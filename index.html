@@ -24,6 +24,13 @@
             <span>Accent</span>
             <input id="accent-color" type="color" value="#f2b84b" aria-label="Choose accent color" title="Choose accent color">
           </label>
+          <label class="theme-picker" for="theme-mode">
+            <span>Theme</span>
+            <select id="theme-mode" aria-label="Choose light or dark theme" title="Choose light or dark theme">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </label>
           <div class="header-status"><span class="status-dot"></span> Ready to play</div>
         </div>
       </header>
@@ -74,6 +81,22 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
       var accentColor = document.querySelector("#accent-color");
+      var themeMode = document.querySelector("#theme-mode");
+
+      function setThemeMode(theme) {
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "light" ? "#e8f2e4" : "#030604");
+        localStorage.setItem("pistol-python-theme", theme);
+      }
+
+      var savedTheme = localStorage.getItem("pistol-python-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        themeMode.value = savedTheme;
+      }
+      setThemeMode(themeMode.value);
+      themeMode.addEventListener("change", function(event) {
+        setThemeMode(event.target.value);
+      });
 
       function setAccentColor(color) {
         document.documentElement.style.setProperty("--accent", color);
