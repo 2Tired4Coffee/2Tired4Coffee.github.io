@@ -55,7 +55,10 @@
           <div id="unity-warning"> </div>
           <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
-            <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen"></button>
+            <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">
+              <span class="fullscreen-glyph" aria-hidden="true"></span>
+              <span>Fullscreen</span>
+            </button>
             <div id="unity-build-title">Pistol Python</div>
           </div>
         </div>
@@ -99,7 +102,12 @@
       });
 
       function setAccentColor(color) {
+        var hex = color.slice(1);
+        var red = parseInt(hex.slice(0, 2), 16);
+        var green = parseInt(hex.slice(2, 4), 16);
+        var blue = parseInt(hex.slice(4, 6), 16);
         document.documentElement.style.setProperty("--accent", color);
+        document.documentElement.style.setProperty("--accent-rgb", red + ", " + green + ", " + blue);
         document.documentElement.style.setProperty("--accent-soft", color + "24");
         document.documentElement.style.setProperty("--accent-glow", color + "a6");
         document.documentElement.style.setProperty("--accent-border", color + "a6");
@@ -199,12 +207,6 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
-                unityInstance.SetFullscreen(1);
-                const enterFullscreen = () => {
-                  unityInstance.SetFullscreen(1);
-                };
-                document.addEventListener("pointerdown", enterFullscreen, { once: true });
-                document.addEventListener("keydown", enterFullscreen, { once: true });
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
