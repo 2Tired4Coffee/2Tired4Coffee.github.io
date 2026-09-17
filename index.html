@@ -117,6 +117,11 @@
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
                 unityInstance.SetFullscreen(1);
+                const enterFullscreen = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+                document.addEventListener("pointerdown", enterFullscreen, { once: true });
+                document.addEventListener("keydown", enterFullscreen, { once: true });
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
