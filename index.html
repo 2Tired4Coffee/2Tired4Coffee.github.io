@@ -3,25 +3,61 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Pistol Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b10">
+    <title>Pistol Python | Play in browser</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=1280 height=720 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="." aria-label="Pistol Python home">
+          <span class="brand-mark" aria-hidden="true">PP</span>
+          <span>
+            <strong>Pistol Python</strong>
+            <small>Browser edition</small>
+          </span>
+        </a>
+        <div class="header-status"><span class="status-dot"></span> Ready to play</div>
+      </header>
+
+      <main class="game-area">
+        <div class="game-heading">
+          <div>
+            <p class="eyebrow">WebGL arcade</p>
+            <h1>Take your shot.</h1>
+          </div>
+          <p class="game-note">Best played fullscreen</p>
         </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Pistol Python</div>
-      </div>
+
+        <div id="unity-container" class="unity-desktop">
+          <canvas id="unity-canvas" width="1280" height="720" tabindex="-1"></canvas>
+          <div id="unity-loading-bar">
+            <div class="loading-label">Loading game</div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-warning"> </div>
+          <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen"></button>
+            <div id="unity-build-title">Pistol Python</div>
+          </div>
+        </div>
+
+        <div class="game-footer">
+          <span>1280 × 720</span>
+          <span class="footer-divider"></span>
+          <span>Fullscreen recommended</span>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <span>Built for quick sessions.</span>
+        <span>© RJgames</span>
+      </footer>
     </div>
     <script>
 
