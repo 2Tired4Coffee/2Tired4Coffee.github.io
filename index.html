@@ -13,7 +13,12 @@
     <div class="site-shell">
       <header class="site-header">
         <a class="brand" href="." aria-label="Pistol Python home">
-          <span class="brand-mark" aria-hidden="true">PP</span>
+          <span class="brand-mark" aria-hidden="true">
+            <svg class="snake-icon" viewBox="0 0 24 24" role="img" aria-label="Snake icon">
+              <path d="M5 5h5v3H7v3h5V8h3v6h4v5h-5v-3h2v-2h-4v3H7v-3h3v-3H5z" fill="currentColor"></path>
+              <rect x="16" y="9" width="2" height="2" fill="currentColor"></rect>
+            </svg>
+          </span>
           <span>
             <strong>Pistol Python</strong>
             <small>Browser edition</small>
@@ -31,6 +36,10 @@
               <option value="light">Light</option>
             </select>
           </label>
+          <a class="download-button" href="PistolPython.zip" download="PistolPython.zip" aria-label="Download Pistol Python" title="Download Pistol Python">
+            <span class="download-glyph" aria-hidden="true"></span>
+            <span>Download</span>
+          </a>
           <div class="header-status"><span class="status-dot"></span> Ready to play</div>
         </div>
       </header>
