@@ -1,556 +1,131 @@
 <!DOCTYPE html>
-<!--
-  Celadon Template
-  https://templatemo.com/tm-633-celadon
--->
-<!-- Celadon Soft, a claymorphism SaaS landing template. Free to use with the attribution links kept in the footer. -->
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Celadon - Shape customer feedback into a roadmap</title>
-        <meta name="description"
-              content="Celadon collects customer feedback from every channel and groups it into the handful of themes your team can act on.">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Albert+Sans:wght@400;500;600&display=swap"
-              rel="stylesheet">
-        <link rel="stylesheet" href="templatemo-633-celadon-style.css">
-    </head>
-    <body>
-        <header class="top" id="top">
-            <div class="shell bar">
-                <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span>Celadon</a>
-                <nav class="nav">
-                    <a href="#features">Features</a>
-                    <a href="#how">How it works</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#faq">FAQ</a>
-                </nav>
-                <a class="btn solid" href="#start">Start free</a>
-                <button class="burger"
-                        id="burger"
-                        aria-label="Open menu"
-                        aria-expanded="false"
-                        aria-controls="drawer">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </header>
-        <div class="scrim" id="scrim"></div>
-        <aside class="drawer" id="drawer" aria-label="Menu">
-            <span class="dtag">Menu</span>
-            <a href="#features">Features</a>
-            <a href="#how">How it works</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#stories">Customers</a>
-            <a href="#faq">FAQ</a>
-            <a class="btn solid" href="#start">Start free</a>
-        </aside>
-        <main id="home">
-            <!-- hero -->
-            <section class="hero">
-                <div class="shell">
-                    <span class="pill rv"><b>New</b> Two-way sync with Linear</span>
-                    <h1 class="rv d1">Feedback, finally shaped.</h1>
-                    <p class="sub rv d2">Celadon pulls customer feedback out of every channel it hides in and groups it into the handful of themes your team can actually act on.</p>
-                    <div class="acts rv d3">
-                        <a class="btn solid" href="#start">Start free trial</a>
-                        <a class="btn" href="#how">See how it works</a>
-                    </div>
-                    <p class="note rv d3">Free for 14 days. No card needed.</p>
-                    <div class="stage rv d3" aria-hidden="true">
-                        <div class="slab s1" data-depth="14">
-                            <span class="src"><i class="dot" style="background:var(--sky)"></i>Zendesk</span>
-                            <p>"Any chance of a CSV export on the reports page?"</p>
-                        </div>
-                        <div class="slab s2" data-depth="-18">
-                            <span class="src"><i class="dot" style="background:var(--coral)"></i>Sales call</span>
-                            <p>"They will not sign without letting finance pull the raw numbers."</p>
-                        </div>
-                        <div class="slab s3" data-depth="-11">
-                            <span class="src"><i class="dot" style="background:var(--jade)"></i>Slack</span>
-                            <p>"Third customer this week asking to get the data out."</p>
-                        </div>
-                        <div class="slab s4" data-depth="16">
-                            <span class="src"><i class="dot" style="background:#F0C980"></i>App review</span>
-                            <p>"Great app, but my data feels stuck inside it."</p>
-                        </div>
-                        <div class="core" data-depth="7">
-                            <span class="lab">Theme</span>
-                            <h3>Get data out of Celadon</h3>
-                            <div class="meter">
-                                <i></i>
-                            </div>
-                            <div class="row"><span>Requests</span><b>218</b></div>
-                            <div class="row"><span>Accounts affected</span><b>34</b></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- trust -->
-            <section class="pad-s">
-                <div class="shell rv">
-                    <p class="trust-cap">Shaping feedback at</p>
-                    <div class="trust">
-                        <span>Northbeam</span><span>Halyard</span><span>Petrichor</span><span>Oxbow</span><span>Studio Marrow</span><span>Kelp</span>
-                    </div>
-                </div>
-            </section>
-            <!-- features -->
-            <section class="pad" id="features">
-                <div class="shell center">
-                    <span class="eyebrow rv">What you get</span>
-                    <h2 class="h2 rv">Six raw pieces, one shaped workflow.</h2>
-                    <p class="lede rv d1">No more spreadsheet of quotes that nobody opens after the second week.</p>
-                    <p class="hint rv d1">Click a panel to open it.</p>
-                </div>
-                <div class="shell">
-                    <div class="slabrow rv" id="slabrow">
-                        <div class="stave open" role="button" tabindex="0" aria-expanded="true">
-                            <div class="spine"><span class="pip t-jade"></span><span class="st">One inbox for all of it</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-jade">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M3 7h18M3 12h18M3 17h11" />
-                                            <circle cx="19" cy="17" r="2.4" />
-                                        </svg>
-                                    </div>
-                                    <h3>One inbox for all of it</h3>
-                                    <p>Support tickets, sales notes, app store reviews and Slack threads land in the same place, with the customer already attached.</p>
-                                    <p class="proof">Pulling from <b>nine sources</b>, including CSV drops and forwarded email.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
-                            <div class="spine"><span class="pip t-sky"></span><span class="st">Themes, not tags</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-sky">
-                                        <svg viewBox="0 0 24 24">
-                                            <circle cx="8" cy="9" r="4" /><circle cx="16.5" cy="15" r="4.2" />
-                                            <path d="M11 11.6l2.6 2" />
-                                        </svg>
-                                    </div>
-                                    <h3>Themes, not tags</h3>
-                                    <p>Similar requests cluster on their own, so you stop maintaining a tag taxonomy that only one person ever follows.</p>
-                                    <p class="proof"><b>94%</b> of items land in a theme with nobody touching them.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
-                            <div class="spine"><span class="pip t-coral"></span><span class="st">Weighted by revenue</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-coral">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M5 19V10M12 19V5M19 19v-6" />
-                                            <path d="M3 21h18" />
-                                        </svg>
-                                    </div>
-                                    <h3>Weighted by revenue</h3>
-                                    <p>Every theme shows which accounts are behind it and what they pay, so the loudest request stops beating the biggest one.</p>
-                                    <p class="proof">Sorts by <b>the revenue behind the ask</b>, not by upvote count.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
-                            <div class="spine"><span class="pip t-sky"></span><span class="st">Reply where it started</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-sky">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M4 6h16v11H9l-5 4z" />
-                                            <path d="M9 11h6" />
-                                        </svg>
-                                    </div>
-                                    <h3>Reply where it started</h3>
-                                    <p>Close the loop in the channel the feedback arrived in, without copying links between four different tools.</p>
-                                    <p class="proof">Replies go out in <b>the original channel</b>, in your own words.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
-                            <div class="spine"><span class="pip t-jade"></span><span class="st">A roadmap that links back</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-jade">
-                                        <svg viewBox="0 0 24 24">
-                                            <rect x="3" y="4" width="18" height="16" rx="3" />
-                                            <path d="M3 9h18M8 4v16" />
-                                        </svg>
-                                    </div>
-                                    <h3>A roadmap that links back</h3>
-                                    <p>Each roadmap item keeps a live list of the feedback that shaped it, so the reason it exists never goes missing.</p>
-                                    <p class="proof">Every item keeps <b>a live list</b> of the feedback behind it.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
-                            <div class="spine"><span class="pip t-coral"></span><span class="st">Fits your stack</span></div>
-                            <div class="bodywrap">
-                                <div class="body">
-                                    <div class="tile t-coral">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M12 3v6M12 15v6M3 12h6M15 12h6" />
-                                            <circle cx="12" cy="12" r="3" />
-                                        </svg>
-                                    </div>
-                                    <h3>Fits your stack</h3>
-                                    <p>Two-way sync with Linear, Jira, HubSpot and Zendesk, set up from a settings page rather than a support call.</p>
-                                    <p class="proof">Status changes travel <b>both ways</b>, so nothing drifts out of date.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- how -->
-            <section class="pad" id="how">
-                <div class="shell center">
-                    <span class="eyebrow rv">The process</span>
-                    <h2 class="h2 rv">Three steps, then it runs itself.</h2>
-                </div>
-                <div class="shell">
-                    <div class="track">
-                        <div class="step rv">
-                            <div class="disc">1</div>
-                            <h3>Collect</h3>
-                            <p>Connect your channels once. New feedback arrives every few minutes with the customer already matched.</p>
-                        </div>
-                        <div class="step rv d1">
-                            <div class="disc">2</div>
-                            <h3>Shape</h3>
-                            <p>Similar requests gather into themes with a plain summary you can rewrite in a sentence.</p>
-                        </div>
-                        <div class="step rv d2">
-                            <div class="disc">3</div>
-                            <h3>Ship</h3>
-                            <p>Push a theme to your tracker. Everyone who asked for it hears back on the day it lands.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- integrations -->
-            <section class="pad-s">
-                <div class="shell center">
-                    <span class="eyebrow rv">Connections</span>
-                    <h2 class="h2 rv">Plugs into the tools already open on your screen.</h2>
-                    <div class="chips rv d1">
-                        <span class="chip"><i style="background:var(--jade)"></i>Linear</span>
-                        <span class="chip"><i style="background:var(--sky)"></i>Jira</span>
-                        <span class="chip"><i style="background:var(--coral)"></i>Zendesk</span>
-                        <span class="chip"><i style="background:#F0C980"></i>Intercom</span>
-                        <span class="chip"><i style="background:var(--jade)"></i>Slack</span>
-                        <span class="chip"><i style="background:var(--sky)"></i>HubSpot</span>
-                        <span class="chip"><i style="background:var(--coral)"></i>Notion</span>
-                        <span class="chip"><i style="background:#F0C980"></i>Front</span>
-                        <span class="chip"><i style="background:var(--jade)"></i>Gong</span>
-                        <span class="chip"><i style="background:var(--sky)"></i>App Store</span>
-                        <span class="chip"><i style="background:var(--coral)"></i>G2</span>
-                        <span class="chip"><i style="background:#F0C980"></i>Zapier</span>
-                    </div>
-                </div>
-            </section>
-            <!-- stats -->
-            <section class="pad-s">
-                <div class="shell">
-                    <div class="statplate rv">
-                        <div class="stat"><b data-to="94" data-suffix="%">0%</b><span>of new feedback themed without a human</span></div>
-                        <div class="stat"><b data-to="6" data-suffix=" min">0 min</b><span>from first connection to first theme</span></div>
-                        <div class="stat"><b data-to="1800" data-suffix="+">0+</b><span>product teams shaping feedback here</span></div>
-                    </div>
-                </div>
-            </section>
-            <!-- testimonials -->
-            <section class="pad" id="stories">
-                <div class="shell">
-                    <div class="railhead">
-                        <div>
-                            <span class="eyebrow rv">Customers</span>
-                            <h2 class="h2 rv">What changed after the spreadsheet went away.</h2>
-                        </div>
-                        <div class="railnav rv d1">
-                            <button class="arw" id="prev" aria-label="Previous customer">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M15 5l-7 7 7 7" />
-                                </svg>
-                            </button>
-                            <span class="count" id="count">01 / 06</span>
-                            <button class="arw" id="next" aria-label="Next customer">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="shell">
-                    <div class="viewport" id="viewport">
-                        <div class="lane" id="lane">
-                            <article class="quote">
-                                <div class="qtop"><span class="co"><i class="t-jade"></i>Northbeam</span><span class="result">11 themes on day one</span></div>
-                                <blockquote>
-                                    Four years of feedback sat in a spreadsheet nobody trusted. Celadon read it and gave us eleven themes. Two we had been arguing about for months.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-jade">RA</span>
-                                    <div><b>Rosa Aldana</b><span>Head of Product</span></div>
-                                </div>
-                            </article>
-                            <article class="quote tint">
-                                <div class="qtop"><span class="co"><i class="t-sky"></i>Halyard</span><span class="result">Roadmap fight, 10 minutes</span></div>
-                                <blockquote>
-                                    The revenue weighting settled an argument we had been having all quarter. The feature we kept deferring was worth more than the three above it combined.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-sky">JM</span>
-                                    <div><b>Jonah Merrick</b><span>VP Product</span></div>
-                                </div>
-                            </article>
-                            <article class="quote">
-                                <div class="qtop"><span class="co"><i class="t-coral"></i>Petrichor</span><span class="result">6 hrs a week back</span></div>
-                                <blockquote>
-                                    Support stopped forwarding me screenshots. Everything shows up already grouped, with the account name and the plan attached to it.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-coral">SO</span>
-                                    <div><b>Sena Okafor</b><span>Product Lead</span></div>
-                                </div>
-                            </article>
-                            <article class="quote">
-                                <div class="qtop"><span class="co"><i class="t-jade"></i>Oxbow</span><span class="result">2,100 loops closed</span></div>
-                                <blockquote>
-                                    The loop closing is the part customers notice. People get a reply months after they asked, and they write back surprised that anyone remembered.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-jade">DK</span>
-                                    <div><b>Dov Katsaros</b><span>Customer Success</span></div>
-                                </div>
-                            </article>
-                            <article class="quote tint">
-                                <div class="qtop"><span class="co"><i class="t-sky"></i>Studio Marrow</span><span class="result">Replaced three tools</span></div>
-                                <blockquote>
-                                    We are five people and I did not want another subscription. This one took out a spreadsheet, a Notion board and a weekly meeting, so it came out ahead.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-sky">MB</span>
-                                    <div><b>Maren Bly</b><span>Founder</span></div>
-                                </div>
-                            </article>
-                            <article class="quote">
-                                <div class="qtop"><span class="co"><i class="t-coral"></i>Kelp</span><span class="result">Set up over one coffee</span></div>
-                                <blockquote>
-                                    I connected Zendesk and Slack, went to make a coffee, and came back to a themed list already waiting for me.
-                                </blockquote>
-                                <div class="groove"></div>
-                                <div class="who">
-                                    <span class="face t-coral">TF</span>
-                                    <div><b>Tomas Ferreira</b><span>Director of Product</span></div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- pricing -->
-            <section class="pad" id="pricing">
-                <div class="shell center">
-                    <span class="eyebrow rv">Pricing</span>
-                    <h2 class="h2 rv">Priced per workspace, not per seat.</h2>
-                    <p class="lede rv d1">Invite everyone. Charging you for the teammate who reads once a month never made sense.</p>
-                    <div class="toggle rv d1">
-                        <span class="lbl on" id="lblM">Monthly</span>
-                        <div class="switch"
-                             id="switch"
-                             role="switch"
-                             tabindex="0"
-                             aria-checked="false"
-                             aria-label="Switch to yearly billing">
-                            <span class="knob"></span>
-                        </div>
-                        <span class="lbl" id="lblY">Yearly</span>
-                        <span class="save">Save 30%</span>
-                    </div>
-                </div>
-                <div class="shell">
-                    <div class="plans">
-                        <article class="plan rv">
-                            <span class="tag">Solo</span>
-                            <div class="cost"><b class="price" data-m="30" data-y="21">$30</b><span class="per">per month</span></div>
-                            <p class="total" data-m="30" data-y="252">Billed monthly</p>
-                            <p class="desc">For one person keeping track of everything on their own.</p>
-                            <a class="btn wide" href="#start">Start free trial</a>
-                            <ul class="feat">
-                                <li><i></i>Three channels connected</li>
-                                <li><i></i>Up to 500 feedback items a month</li>
-                                <li><i></i>Automatic theming</li>
-                                <li><i></i>Email support</li>
-                            </ul>
-                        </article>
-                        <article class="plan hot rv d1">
-                            <span class="tag">Team, most picked</span>
-                            <div class="cost"><b class="price" data-m="80" data-y="56">$80</b><span class="per">per month</span></div>
-                            <p class="total" data-m="80" data-y="672">Billed monthly</p>
-                            <p class="desc">For a product team that needs the roadmap to trace back to real people.</p>
-                            <a class="btn solid wide" href="#start">Start free trial</a>
-                            <ul class="feat">
-                                <li><i></i>Unlimited channels and seats</li>
-                                <li><i></i>Up to 8,000 feedback items a month</li>
-                                <li><i></i>Revenue weighting</li>
-                                <li><i></i>Two-way sync with Linear and Jira</li>
-                                <li><i></i>Loop closing from any channel</li>
-                            </ul>
-                        </article>
-                        <article class="plan rv d2">
-                            <span class="tag">Scale</span>
-                            <div class="cost"><b class="price" data-m="160" data-y="112">$160</b><span class="per">per month</span></div>
-                            <p class="total" data-m="160" data-y="1344">Billed monthly</p>
-                            <p class="desc">For several teams sharing one feedback pool without stepping on each other.</p>
-                            <a class="btn wide" href="#start">Talk to us</a>
-                            <ul class="feat">
-                                <li><i></i>Everything in Team</li>
-                                <li><i></i>Unlimited feedback items</li>
-                                <li><i></i>Separate boards per team</li>
-                                <li><i></i>SSO and audit log</li>
-                                <li><i></i>Shared Slack channel with us</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
-            <!-- faq -->
-            <section class="pad" id="faq">
-                <div class="shell center">
-                    <span class="eyebrow rv">Questions</span>
-                    <h2 class="h2 rv">Asked often enough to put here.</h2>
-                </div>
-                <div class="shell">
-                    <div class="faq">
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>Can I bring in the feedback I already have?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>Yes. Upload a CSV or connect a tool and Celadon reads the full history, not only what arrives from today. Most teams import a few years on the first afternoon.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>How accurate is the automatic theming?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>Around 94 percent of items land in a theme without anyone touching them. The rest sit in a review queue, and every grouping can be split, merged or renamed by hand.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>Does it write to my issue tracker?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>It does. Push a theme to Linear or Jira and the issue carries the summary and a link back. When the issue closes, Celadon marks the theme shipped and queues the replies.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>What happens when the trial ends?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>The workspace goes read only. Nothing is deleted, and you can export everything as CSV or JSON at any point, including after you leave.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>Is customer data used to train models?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>No. Your feedback is processed to build your themes and nothing else. Data stays in the region you pick at setup, and the Scale plan adds an audit log of every read.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>We are two people. Is this too much tool?</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>Small teams get the most out of the loop closing, since there is nobody spare to chase old threads. Start on Solo and move up only when the item count says so.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- closing cta -->
-            <section class="pad" id="start">
-                <div class="shell">
-                    <div class="close-plate rv">
-                        <span class="eyebrow">Get started</span>
-                        <h2>Point it at a week of your own feedback.</h2>
-                        <p class="lede">Connect one channel and see what comes back. If the themes are wrong, you will know inside an hour.</p>
-                        <div class="form">
-                            <input class="field"
-                                   type="email"
-                                   placeholder="you@company.com"
-                                   aria-label="Work email">
-                            <button class="btn solid" type="button" id="create">Create account</button>
-                        </div>
-                        <p class="note">Free for 14 days. Cancel from the settings page in two clicks.</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer class="foot">
-            <div class="shell">
-                <div class="footbar">
-                    <p>&copy; 2026 Celadon. A free HTML template.</p>
-                    <p>Design by <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a> <a rel="nofollow noopener"
-    href="https://www.tooplate.com"
-    target="_blank">Tooplate</a></p>
-                </div>
-            </div>
-        </footer>
-        <div class="sfx" id="sfx">
-            <button class="sbtn"
-                    id="sbtn"
-                    aria-pressed="true"
-                    aria-label="Sound on"
-                    title="Sound on">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path class="cone" d="M3.5 9.4v5.2h3.4l4.6 3.8V5.6L6.9 9.4H3.5z" />
-                    <path class="w1" d="M14.6 9.3a3.7 3.7 0 0 1 0 5.4" />
-                    <path class="w2" d="M17.3 6.6a7.4 7.4 0 0 1 0 10.8" />
-                    <path class="slash" d="M4.5 19.5L19.5 4.5" />
-                </svg>
-            </button>
-            <span class="scue" id="scue">Click once to wake the sound</span>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Pistol Python</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=1280 height=720 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
-        <button class="up" id="up" aria-label="Back to top">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 19V6M6 12l6-6 6 6" />
-            </svg>
-        </button>
-        <script src="templatemo-633-celadon-script.js"></script>
-    </body>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Pistol Python</div>
+      </div>
+    </div>
+    <script>
+
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/WebGL.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/WebGL.data.unityweb",
+        frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
+        codeUrl: buildUrl + "/WebGL.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "RJgames",
+        productName: "Pistol Python",
+        productVersion: "1.0",
+        showBanner: unityShowBanner,
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      // If you would like all file writes inside Unity Application.persistentDataPath
+      // directory to automatically persist so that the contents are remembered when
+      // the user revisits the site the next time, uncomment the following line:
+      // config.autoSyncPersistentDataPath = true;
+      // This autosyncing is currently not the default behavior to avoid regressing
+      // existing user projects that might rely on the earlier manual
+      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+      // expected to change.
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "1280px";
+        canvas.style.height = "720px";
+      }
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
 </html>
