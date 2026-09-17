@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
 	color-scheme: dark;
 	--ink: #d7ffd2;
@@ -11,8 +13,8 @@
 	--accent-glow: #f2b84ba6;
 	--accent-border: #f2b84ba6;
 	--page: #030604;
-	--scanline: rgba(var(--accent-rgb), 0.04);
-	--screen-glow: rgba(var(--accent-rgb), 0.24);
+	--scanline: rgba(242, 184, 75, 0.04);
+	--screen-glow: rgba(242, 184, 75, 0.24);
 	--vignette: rgba(0, 0, 0, 0.86);
 	--title-glow: rgba(140, 255, 108, 0.55);
 }
@@ -25,8 +27,8 @@
 	--line: rgba(27, 76, 34, 0.28);
 	--panel: #f5fbf1;
 	--page: #e8f2e4;
-	--scanline: rgba(var(--accent-rgb), 0.055);
-	--screen-glow: rgba(var(--accent-rgb), 0.14);
+	--scanline: rgba(242, 184, 75, 0.055);
+	--screen-glow: rgba(242, 184, 75, 0.14);
 	--vignette: rgba(84, 122, 77, 0.22);
 	--title-glow: rgba(75, 151, 68, 0.32);
 }
@@ -38,7 +40,7 @@ body {
 	margin: 0;
 	color: var(--ink);
 	background: var(--page);
-	font-family: "Lucida Console", Monaco, monospace;
+	font-family: "Press Start 2P", "Lucida Console", Monaco, monospace;
 }
 body::before {
 	position: fixed;

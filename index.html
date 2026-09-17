@@ -36,14 +36,6 @@
       </header>
 
       <main class="game-area">
-        <div class="game-heading">
-          <div>
-            <p class="eyebrow">WebGL arcade</p>
-            <h1>Take your shot.</h1>
-          </div>
-          <p class="game-note">Best played fullscreen</p>
-        </div>
-
         <div id="unity-container" class="unity-desktop">
           <canvas id="unity-canvas" width="1280" height="720" tabindex="-1"></canvas>
           <div id="unity-loading-bar">
@@ -108,6 +100,8 @@
         var blue = parseInt(hex.slice(4, 6), 16);
         document.documentElement.style.setProperty("--accent", color);
         document.documentElement.style.setProperty("--accent-rgb", red + ", " + green + ", " + blue);
+        document.documentElement.style.setProperty("--screen-glow", "rgba(" + red + ", " + green + ", " + blue + ", 0.24)");
+        document.documentElement.style.setProperty("--scanline", "rgba(" + red + ", " + green + ", " + blue + ", 0.04)");
         document.documentElement.style.setProperty("--accent-soft", color + "24");
         document.documentElement.style.setProperty("--accent-glow", color + "a6");
         document.documentElement.style.setProperty("--accent-border", color + "a6");
