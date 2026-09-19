@@ -75,7 +75,7 @@
 
             <article class="game-card glass-panel">
               <div class="card-badge">Game jam build</div>
-              <h3>WHOO GAVE YOU THAT</h3>
+              <h3>WHOO GAVE YOU THAT?</h3>
               <p>A second playable game made by 2Tired4Coffee.</p>
               <div class="card-row">
                 <span>WebGL</span>
@@ -88,7 +88,7 @@
 
             <article class="game-card glass-panel">
               <div class="card-badge">Game jam build</div>
-              <h3>Simon Says</h3>
+              <h3>Simon Says Jump</h3>
               <p>A memory game made by 2Tired4Coffee.</p>
               <div class="card-row">
                 <span>WebGL</span>
@@ -120,7 +120,10 @@
             </div>
             <div id="unity-warning" aria-live="polite"> </div>
             <div id="unity-footer">
-              <div id="unity-webgl-logo"></div>
+              <div class="tired-coffee-logo" aria-label="2Tired4Coffee">
+                <span class="logo-zzz" aria-hidden="true">ZZZ</span>
+                <span class="logo-mug" aria-hidden="true"></span>
+              </div>
               <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">
                 <span class="fullscreen-glyph" aria-hidden="true"></span>
                 <span>Fullscreen</span>
@@ -140,7 +143,7 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">live build</p>
-              <h2>Play WHOO GAVE YOU THAT</h2>
+              <h2>Play WHOO GAVE YOU THAT?</h2>
             </div>
             <a class="back-button" href="#games">← Back to games</a>
           </div>
@@ -155,8 +158,12 @@
             </div>
             <div id="whoo-warning" aria-live="polite"> </div>
             <div id="whoo-footer">
+              <div class="tired-coffee-logo" aria-label="2Tired4Coffee">
+                <span class="logo-zzz" aria-hidden="true">ZZZ</span>
+                <span class="logo-mug" aria-hidden="true"></span>
+              </div>
               <button id="whoo-fullscreen-button" type="button" aria-label="Enter fullscreen">Fullscreen</button>
-              <div id="unity-build-title">WHOO GAVE YOU THAT</div>
+              <div id="unity-build-title">WHOO GAVE YOU THAT?</div>
             </div>
           </div>
         </section>
@@ -165,7 +172,7 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">live build</p>
-              <h2>Play Simon Says</h2>
+              <h2>Play Simon Says Jump</h2>
             </div>
             <a class="back-button" href="#games">← Back to games</a>
           </div>
@@ -180,8 +187,12 @@
             </div>
             <div id="simon-warning" aria-live="polite"> </div>
             <div id="simon-footer">
+              <div class="tired-coffee-logo" aria-label="2Tired4Coffee">
+                <span class="logo-zzz" aria-hidden="true">ZZZ</span>
+                <span class="logo-mug" aria-hidden="true"></span>
+              </div>
               <button id="simon-fullscreen-button" type="button" aria-label="Enter fullscreen">Fullscreen</button>
-              <div id="unity-build-title">Simon Says</div>
+              <div id="unity-build-title">Simon Says Jump</div>
             </div>
           </div>
         </section>
@@ -374,7 +385,7 @@
             codeUrl: "Games/whoo-gave-you-that/Build/WebGL.wasm",
             streamingAssetsUrl: "Games/whoo-gave-you-that/StreamingAssets",
             companyName: "2Tired4Coffee",
-            productName: "WHOO GAVE YOU THAT",
+            productName: "WHOO GAVE YOU THAT?",
             productVersion: "1.0",
             showBanner: function(message) {
               whooWarning.textContent = message;
@@ -423,7 +434,7 @@
             codeUrl: "Games/simon-says/Build/WebGL.wasm",
             streamingAssetsUrl: "Games/simon-says/StreamingAssets",
             companyName: "2Tired4Coffee",
-            productName: "Simon Says",
+            productName: "Simon Says Jump",
             productVersion: "1.0",
             showBanner: function(message) {
               simonWarning.textContent = message;

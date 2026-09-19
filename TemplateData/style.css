@@ -554,6 +554,8 @@ button, select, input { font: inherit; }
 .game-card,
 .mini-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 24px 22px;
   border-radius: 24px;
   transition: transform 0.2s ease, border-color 0.2s ease;
@@ -583,7 +585,8 @@ button, select, input { font: inherit; }
 .card-actions {
   justify-content: flex-start;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: auto;
+  padding-top: 22px;
   flex-wrap: wrap;
 }
 
@@ -766,7 +769,8 @@ body.game-view-active .showcase {
   width: 100%;
 }
 
-#whoo-unity-container {
+#whoo-unity-container,
+#simon-unity-container {
   position: relative;
   overflow: hidden;
   min-height: 420px;
@@ -776,7 +780,8 @@ body.game-view-active .showcase {
   background: #000;
 }
 
-#whoo-unity-canvas {
+#whoo-unity-canvas,
+#simon-unity-canvas {
   display: block;
   width: 100% !important;
   height: auto !important;
@@ -784,7 +789,8 @@ body.game-view-active .showcase {
   background: #000;
 }
 
-#whoo-loading-bar {
+#whoo-loading-bar,
+#simon-loading-bar {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -793,7 +799,8 @@ body.game-view-active .showcase {
   display: none;
 }
 
-#whoo-progress-bar-empty {
+#whoo-progress-bar-empty,
+#simon-progress-bar-empty {
   width: 100%;
   height: 10px;
   overflow: hidden;
@@ -803,7 +810,8 @@ body.game-view-active .showcase {
   background: rgba(4,8,20,0.7);
 }
 
-#whoo-progress-bar-full {
+#whoo-progress-bar-full,
+#simon-progress-bar-full {
   width: 0%;
   height: 100%;
   border-radius: 999px;
@@ -811,7 +819,8 @@ body.game-view-active .showcase {
   box-shadow: 0 0 18px var(--accent-glow);
 }
 
-#whoo-warning {
+#whoo-warning,
+#simon-warning {
   position: absolute;
   left: 50%;
   top: 5%;
@@ -826,7 +835,8 @@ body.game-view-active .showcase {
   text-align: center;
 }
 
-#whoo-footer {
+#whoo-footer,
+#simon-footer {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -847,6 +857,21 @@ body.game-view-active .showcase {
   color: var(--accent);
   background: var(--accent-soft);
   cursor: pointer;
+}
+
+#simon-fullscreen-button {
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  cursor: pointer;
+}
+
+#whoo-build-title,
+#simon-build-title {
+  margin-left: auto;
 }
 
 #unity-canvas {
@@ -922,7 +947,61 @@ body.game-view-active .showcase {
   background: linear-gradient(transparent, rgba(0,0,0,0.92));
 }
 
-#unity-webgl-logo { display: none; }
+.tired-coffee-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 78px;
+  height: 30px;
+  color: var(--accent);
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.logo-zzz {
+  align-self: flex-start;
+  font-size: 0.48rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-shadow: 0 0 8px var(--accent-glow);
+  animation: logo-snore 2.8s ease-in-out infinite;
+}
+
+.logo-mug {
+  position: relative;
+  display: block;
+  width: 25px;
+  height: 17px;
+  border: 2px solid currentColor;
+  border-radius: 2px 2px 7px 7px;
+  box-shadow: inset 0 -5px 0 var(--accent-soft);
+}
+
+.logo-mug::before {
+  position: absolute;
+  top: 3px;
+  right: -8px;
+  width: 7px;
+  height: 8px;
+  border: 2px solid currentColor;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+  content: "";
+}
+
+.logo-mug::after {
+  position: absolute;
+  top: -9px;
+  left: 4px;
+  width: 12px;
+  height: 9px;
+  border-left: 2px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.75;
+  transform: skewX(-18deg);
+  animation: steam-rise 2.2s ease-in-out infinite;
+}
 
 #unity-build-title {
   margin-left: auto;
@@ -1439,6 +1518,16 @@ body::after {
 @keyframes title-glow {
   0%, 100% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
   50% { filter: drop-shadow(0 0 22px var(--accent-glow)); }
+}
+
+@keyframes logo-snore {
+  0%, 100% { transform: translateY(2px); opacity: 0.65; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+@keyframes steam-rise {
+  0%, 100% { opacity: 0.2; transform: translateY(3px) skewX(-18deg); }
+  50% { opacity: 0.9; transform: translateY(-2px) skewX(-18deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
