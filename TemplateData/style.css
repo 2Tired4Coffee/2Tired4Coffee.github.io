@@ -986,6 +986,10 @@ body.game-view-active .showcase {
   background: linear-gradient(transparent, rgba(0,0,0,0.92));
 }
 
+#unity-webgl-logo {
+  background: none !important;
+}
+
 .tired-coffee-logo {
   position: relative;
   display: inline-flex;
