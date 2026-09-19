@@ -761,35 +761,41 @@
           });
         }
 
-        function drawCube() {
+        function drawCore() {
           var x = cube.x * spaceWidth();
           var y = cube.y * spaceHeight();
           var pulse = 1 + Math.sin(Date.now() / 500) * 0.08;
-          var size = cube.size * pulse;
+          var size = cube.size * 1.15 * pulse;
+          var accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#7dd3fc";
+          var glow = getComputedStyle(document.documentElement).getPropertyValue("--accent-glow").trim() || accent;
+          var orbit = Date.now() / 1100;
           context.save();
           context.translate(x, y);
-          context.rotate(Math.sin(Date.now() / 1400) * 0.18);
-          context.strokeStyle = "rgba(125, 211, 252, 0.84)";
-          context.shadowColor = "rgba(125, 211, 252, 0.9)";
-          context.shadowBlur = 22;
-          context.lineWidth = 1.8;
-          context.fillStyle = "rgba(125, 211, 252, 0.08)";
+          context.strokeStyle = accent;
+          context.shadowColor = glow;
+          context.shadowBlur = 26;
+          context.lineWidth = 1.5;
+          context.globalAlpha = 0.25;
           context.beginPath();
-          context.moveTo(0, -size / 2);
-          context.lineTo(size / 2, -size / 5);
-          context.lineTo(0, size / 8);
-          context.lineTo(-size / 2, -size / 5);
+          context.arc(0, 0, size * 0.9, 0, Math.PI * 2);
+          context.stroke();
+          context.globalAlpha = 0.7;
+          context.setLineDash([3, 7]);
+          context.beginPath();
+          context.arc(0, 0, size * 1.25, orbit, orbit + Math.PI * 1.55);
+          context.stroke();
+          context.setLineDash([]);
+          context.globalAlpha = 0.9;
+          context.fillStyle = accent;
+          context.beginPath();
+          context.arc(0, 0, size * 0.28, 0, Math.PI * 2);
           context.closePath();
           context.fill();
-          context.stroke();
+          context.globalAlpha = 0.42;
+          context.fillStyle = glow;
           context.beginPath();
-          context.moveTo(-size / 2, -size / 5);
-          context.lineTo(-size / 2, size / 2);
-          context.lineTo(0, size * 0.72);
-          context.lineTo(0, size / 8);
-          context.moveTo(size / 2, -size / 5);
-          context.lineTo(size / 2, size / 2);
-          context.lineTo(0, size * 0.72);
+          context.arc(0, 0, size * 0.62, 0, Math.PI * 2);
+          context.closePath();
           context.stroke();
           context.restore();
         }
@@ -841,7 +847,7 @@
             context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             context.fill();
           });
-          drawCube();
+          drawCore();
         }
 
         function frame(time) {
