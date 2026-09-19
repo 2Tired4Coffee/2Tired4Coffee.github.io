@@ -16,6 +16,7 @@
   <body>
     <div class="page-glow page-glow-one"></div>
     <div class="page-glow page-glow-two"></div>
+    <canvas id="home-space" aria-hidden="true"></canvas>
 
     <div class="site-shell">
       <header class="site-header">
@@ -633,6 +634,176 @@
           card.style.transform = '';
         });
       });
+
+      (function startHomeSpaceGame() {
+        var space = document.querySelector("#home-space");
+        var context = space.getContext("2d");
+        var pointer = { x: 0.5, y: 0.5 };
+        var cube = { x: 0.5, y: 0.5, size: 34 };
+        var bullets = [];
+        var rocks = [];
+        var lastTime = 0;
+        var rockTimer = 0;
+        var running = true;
+
+        function resizeSpace() {
+          var ratio = Math.min(window.devicePixelRatio || 1, 2);
+          space.width = window.innerWidth * ratio;
+          space.height = window.innerHeight * ratio;
+          space.style.width = window.innerWidth + "px";
+          space.style.height = window.innerHeight + "px";
+          context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        }
+
+        function addRock() {
+          rocks.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            size: 5 + Math.random() * 13,
+            depth: 0.2 + Math.random() * 0.8,
+            drift: (Math.random() - 0.5) * 10
+          });
+        }
+
+        function fireBullet() {
+          var targetX = pointer.x * window.innerWidth;
+          var targetY = pointer.y * window.innerHeight;
+          var startX = window.innerWidth / 2;
+          var startY = window.innerHeight / 2;
+          var distance = Math.hypot(targetX - startX, targetY - startY) || 1;
+          bullets.push({
+            x: startX,
+            y: startY,
+            vx: (targetX - startX) / distance * 900,
+            vy: (targetY - startY) / distance * 900,
+            life: 1
+          });
+        }
+
+        function update(delta) {
+          var targetX = pointer.x;
+          var targetY = pointer.y;
+          cube.x += (targetX - cube.x) * Math.min(delta * 1.8, 1);
+          cube.y += (targetY - cube.y) * Math.min(delta * 1.8, 1);
+          rockTimer += delta;
+          if (rockTimer > 0.42 && rocks.length < 22) {
+            addRock();
+            rockTimer = 0;
+          }
+
+          bullets.forEach(function(bullet) {
+            bullet.x += bullet.vx * delta;
+            bullet.y += bullet.vy * delta;
+            bullet.life -= delta * 1.7;
+          });
+          bullets = bullets.filter(function(bullet) {
+            return bullet.life > 0 && bullet.x > -30 && bullet.x < window.innerWidth + 30 && bullet.y > -30 && bullet.y < window.innerHeight + 30;
+          });
+
+          rocks.forEach(function(rock) {
+            rock.y -= 16 * rock.depth * delta;
+            rock.x += rock.drift * delta;
+            rock.depth += delta * 0.018;
+          });
+          rocks = rocks.filter(function(rock) {
+            return rock.y > -40 && rock.depth < 1.3;
+          });
+
+          bullets.forEach(function(bullet) {
+            rocks.forEach(function(rock) {
+              var hitDistance = rock.size + 5;
+              if (Math.hypot(bullet.x - rock.x, bullet.y - rock.y) < hitDistance) {
+                rock.depth = 1.4;
+                bullet.life = 0;
+              }
+            });
+          });
+        }
+
+        function drawCube() {
+          var x = cube.x * window.innerWidth;
+          var y = cube.y * window.innerHeight;
+          var pulse = 1 + Math.sin(Date.now() / 500) * 0.08;
+          var size = cube.size * pulse;
+          context.save();
+          context.translate(x, y);
+          context.rotate(Math.sin(Date.now() / 1400) * 0.18);
+          context.strokeStyle = "rgba(125, 211, 252, 0.72)";
+          context.shadowColor = "rgba(125, 211, 252, 0.9)";
+          context.shadowBlur = 22;
+          context.lineWidth = 1.5;
+          context.strokeRect(-size / 2, -size / 2, size, size);
+          context.globalAlpha = 0.35;
+          context.strokeRect(-size / 2 + 7, -size / 2 - 7, size, size);
+          context.beginPath();
+          context.moveTo(-size / 2, -size / 2);
+          context.lineTo(-size / 2 + 7, -size / 2 - 7);
+          context.moveTo(size / 2, -size / 2);
+          context.lineTo(size / 2 + 7, -size / 2 - 7);
+          context.stroke();
+          context.restore();
+        }
+
+        function draw() {
+          context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+          rocks.forEach(function(rock) {
+            context.save();
+            context.translate(rock.x, rock.y);
+            context.scale(rock.depth, rock.depth);
+            context.strokeStyle = "rgba(214, 225, 248, 0.45)";
+            context.shadowColor = "rgba(125, 211, 252, 0.4)";
+            context.shadowBlur = 9;
+            context.beginPath();
+            for (var side = 0; side < 7; side += 1) {
+              var angle = side / 7 * Math.PI * 2;
+              var radius = rock.size * (0.75 + Math.sin(side * 4.2) * 0.18);
+              var pointX = Math.cos(angle) * radius;
+              var pointY = Math.sin(angle) * radius;
+              if (side === 0) context.moveTo(pointX, pointY);
+              else context.lineTo(pointX, pointY);
+            }
+            context.closePath();
+            context.stroke();
+            context.restore();
+          });
+          bullets.forEach(function(bullet) {
+            context.fillStyle = "rgba(255, 255, 255, " + bullet.life + ")";
+            context.shadowColor = "rgba(125, 211, 252, 0.9)";
+            context.shadowBlur = 14;
+            context.beginPath();
+            context.arc(bullet.x, bullet.y, 3, 0, Math.PI * 2);
+            context.fill();
+          });
+          drawCube();
+        }
+
+        function frame(time) {
+          if (lastTime === 0) lastTime = time;
+          var delta = Math.min((time - lastTime) / 1000, 0.04);
+          lastTime = time;
+          var shouldRun = !document.body.classList.contains("game-view-active") && !document.body.classList.contains("about-view-active");
+          if (shouldRun) {
+            update(delta);
+            draw();
+          }
+          window.requestAnimationFrame(frame);
+        }
+
+        window.addEventListener("resize", resizeSpace);
+        window.addEventListener("pointermove", function(event) {
+          pointer.x = event.clientX / window.innerWidth;
+          pointer.y = event.clientY / window.innerHeight;
+        });
+        window.addEventListener("pointerdown", function(event) {
+          if (event.target.closest("a, button, input, select")) return;
+          if (!document.body.classList.contains("game-view-active") && !document.body.classList.contains("about-view-active")) {
+            fireBullet();
+          }
+        });
+        resizeSpace();
+        for (var index = 0; index < 13; index += 1) addRock();
+        window.requestAnimationFrame(frame);
+      }());
     </script>
   </body>
 </html>
