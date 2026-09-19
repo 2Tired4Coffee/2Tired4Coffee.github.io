@@ -639,6 +639,32 @@ body.game-view-active .page-content {
 }
 
 body.game-view-active .showcase {
+  display: none;
+}
+
+body.game-view-active[data-game="pistol"] #pistol-python,
+body.game-view-active[data-game="whoo"] #whoo-gave-you-that {
+  display: block;
+}
+
+body.games-view-active .page-content > :not(.games-area) {
+  display: none;
+}
+
+body.games-view-active .page-content {
+  min-height: calc(100vh - 120px);
+}
+
+.page-content > .games-area {
+  display: none;
+}
+
+body.games-view-active .page-content > .games-area {
+  display: block;
+  animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+body.game-view-active .showcase {
   animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
@@ -665,6 +691,89 @@ body.game-view-active .showcase {
 
 #unity-container.unity-desktop {
   width: 100%;
+}
+
+#whoo-unity-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  margin-top: 18px;
+  border: 1px solid var(--accent-border);
+  border-radius: 30px;
+  background: #000;
+}
+
+#whoo-unity-canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 8 / 5;
+  background: #000;
+}
+
+#whoo-loading-bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(320px, 60%);
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+#whoo-progress-bar-empty {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  padding: 2px;
+  background: rgba(4,8,20,0.7);
+}
+
+#whoo-progress-bar-full {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.9));
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+#whoo-warning {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  max-width: 80%;
+  transform: translateX(-50%);
+  display: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(110, 16, 16, 0.45);
+  border: 1px solid rgba(255,110,110,0.55);
+  color: #ffe4e4;
+  text-align: center;
+}
+
+#whoo-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  padding: 0 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.92));
+}
+
+#whoo-fullscreen-button {
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  cursor: pointer;
 }
 
 #unity-canvas {
