@@ -644,6 +644,7 @@
         var particles = [];
         var lastTime = 0;
         var rockTimer = 0;
+        var shotCooldown = 0;
 
         function resizeSpace() {
           var ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -672,6 +673,9 @@
         }
 
         function fireBullet(clientX, clientY) {
+          if (shotCooldown > 0) {
+            return;
+          }
           var bounds = space.getBoundingClientRect();
           var targetX = clientX - bounds.left;
           var targetY = clientY - bounds.top;
@@ -681,10 +685,14 @@
           bullets.push({
             x: startX,
             y: startY,
+            previousX: startX,
+            previousY: startY,
             vx: (targetX - startX) / distance * 900,
             vy: (targetY - startY) / distance * 900,
-            life: 1
+            life: 1,
+            size: 3.5
           });
+          shotCooldown = 0.28;
         }
 
         function update(delta) {
@@ -692,13 +700,16 @@
           var targetY = pointer.y;
           cube.x += (targetX - cube.x) * Math.min(delta * 0.45, 1);
           cube.y += (targetY - cube.y) * Math.min(delta * 0.45, 1);
+          shotCooldown = Math.max(0, shotCooldown - delta);
           rockTimer += delta;
-          if (rockTimer > 0.42 && rocks.length < 22) {
+          if (rockTimer > 0.7 && rocks.length < 10) {
             addRock();
             rockTimer = 0;
           }
 
           bullets.forEach(function(bullet) {
+            bullet.previousX = bullet.x;
+            bullet.previousY = bullet.y;
             bullet.x += bullet.vx * delta;
             bullet.y += bullet.vy * delta;
             bullet.life -= delta * 1.7;
@@ -758,18 +769,27 @@
           context.save();
           context.translate(x, y);
           context.rotate(Math.sin(Date.now() / 1400) * 0.18);
-          context.strokeStyle = "rgba(125, 211, 252, 0.72)";
+          context.strokeStyle = "rgba(125, 211, 252, 0.84)";
           context.shadowColor = "rgba(125, 211, 252, 0.9)";
           context.shadowBlur = 22;
-          context.lineWidth = 1.5;
-          context.strokeRect(-size / 2, -size / 2, size, size);
-          context.globalAlpha = 0.35;
-          context.strokeRect(-size / 2 + 7, -size / 2 - 7, size, size);
+          context.lineWidth = 1.8;
+          context.fillStyle = "rgba(125, 211, 252, 0.08)";
           context.beginPath();
-          context.moveTo(-size / 2, -size / 2);
-          context.lineTo(-size / 2 + 7, -size / 2 - 7);
-          context.moveTo(size / 2, -size / 2);
-          context.lineTo(size / 2 + 7, -size / 2 - 7);
+          context.moveTo(0, -size / 2);
+          context.lineTo(size / 2, -size / 5);
+          context.lineTo(0, size / 8);
+          context.lineTo(-size / 2, -size / 5);
+          context.closePath();
+          context.fill();
+          context.stroke();
+          context.beginPath();
+          context.moveTo(-size / 2, -size / 5);
+          context.lineTo(-size / 2, size / 2);
+          context.lineTo(0, size * 0.72);
+          context.lineTo(0, size / 8);
+          context.moveTo(size / 2, -size / 5);
+          context.lineTo(size / 2, size / 2);
+          context.lineTo(0, size * 0.72);
           context.stroke();
           context.restore();
         }
@@ -797,11 +817,20 @@
             context.restore();
           });
           bullets.forEach(function(bullet) {
-            context.fillStyle = "rgba(255, 255, 255, " + bullet.life + ")";
+            var gradient = context.createLinearGradient(bullet.previousX, bullet.previousY, bullet.x, bullet.y);
+            gradient.addColorStop(0, "rgba(125, 211, 252, 0)");
+            gradient.addColorStop(1, "rgba(255, 255, 255, " + bullet.life + ")");
+            context.strokeStyle = gradient;
+            context.lineWidth = 2.5;
             context.shadowColor = "rgba(125, 211, 252, 0.9)";
-            context.shadowBlur = 14;
+            context.shadowBlur = 12;
             context.beginPath();
-            context.arc(bullet.x, bullet.y, 3, 0, Math.PI * 2);
+            context.moveTo(bullet.previousX, bullet.previousY);
+            context.lineTo(bullet.x, bullet.y);
+            context.stroke();
+            context.fillStyle = "rgba(255, 255, 255, " + bullet.life + ")";
+            context.beginPath();
+            context.arc(bullet.x, bullet.y, bullet.size, 0, Math.PI * 2);
             context.fill();
           });
           particles.forEach(function(particle) {
@@ -843,7 +872,7 @@
           }
         });
         resizeSpace();
-        for (var index = 0; index < 13; index += 1) addRock();
+        for (var index = 0; index < 6; index += 1) addRock();
         window.requestAnimationFrame(frame);
       }());
     </script>
