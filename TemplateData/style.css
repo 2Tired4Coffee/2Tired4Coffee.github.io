@@ -1488,6 +1488,67 @@ body::after {
 }
 
 /* Final polish */
+.page-content {
+  position: relative;
+}
+
+.hero-centered {
+  min-height: 58vh;
+  padding: clamp(84px, 12vh, 150px) 0 72px;
+}
+
+.hero-centered .hero-copy {
+  width: min(100%, 860px);
+  padding: 34px 28px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.22), inset 0 0 40px var(--panel-soft);
+  backdrop-filter: blur(4px);
+}
+
+.hero-centered .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-centered .eyebrow::before,
+.hero-centered .eyebrow::after {
+  width: 28px;
+  height: 1px;
+  background: var(--accent-border);
+  box-shadow: 0 0 12px var(--accent-glow);
+  content: "";
+}
+
+.hero-centered h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 6.6rem);
+  text-wrap: balance;
+}
+
+.hero-centered .hero-text {
+  color: var(--muted-strong);
+}
+
+.project-section {
+  padding-top: 26px;
+}
+
+.section-heading {
+  padding: 0 2px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+}
+
+.section-heading h2 {
+  margin-top: 12px;
+}
+
+.card-grid {
+  gap: 18px;
+}
+
 .site-header {
   isolation: isolate;
   overflow: hidden;
@@ -1578,6 +1639,46 @@ body::after {
 
 .game-card:hover {
   transform: translateY(-8px) rotateX(2deg);
+}
+
+.game-card {
+  min-height: 318px;
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--line));
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2), inset 0 0 24px var(--panel-soft);
+}
+
+.game-card h3 {
+  max-width: 14ch;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.game-card p {
+  max-width: 34ch;
+}
+
+.card-row span {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel-soft);
+}
+
+.inline-button {
+  min-width: 124px;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-soft), transparent);
+}
+
+.about-panel {
+  margin-top: 44px;
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--line));
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+.site-footer {
+  opacity: 0.82;
 }
 
 .inline-button,
