@@ -27,11 +27,6 @@
           </span>
         </a>
 
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#games" class="games-nav-link">Games</a>
-          <a href="#about" class="about-nav-link">About</a>
-        </nav>
-
         <div class="header-tools">
           <label class="accent-picker" for="accent-color">
             <span>Hue</span>
@@ -459,20 +454,6 @@
         link.addEventListener("click", function(event) {
           event.preventDefault();
           showGameView(link.dataset.game || "pistol");
-        });
-      });
-
-      document.querySelectorAll(".games-nav-link").forEach(function(link) {
-        link.addEventListener("click", function(event) {
-          event.preventDefault();
-          showGamesView();
-        });
-      });
-
-      document.querySelectorAll(".about-nav-link").forEach(function(link) {
-        link.addEventListener("click", function(event) {
-          event.preventDefault();
-          showAboutView();
         });
       });
 

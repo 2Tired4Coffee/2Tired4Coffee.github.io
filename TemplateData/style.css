@@ -1306,3 +1306,146 @@ body::after {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Final polish */
+.site-header {
+  isolation: isolate;
+  overflow: hidden;
+  animation: header-drop 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.site-header::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 20%, var(--accent-soft), transparent 75%);
+  content: "";
+  transform: translateX(-110%);
+  animation: header-sheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.header-tools {
+  margin-left: auto;
+}
+
+.brand {
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.brand:hover,
+.brand:focus-visible {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 14px var(--accent-glow));
+}
+
+.brand-mark {
+  animation: mark-pulse 3.8s ease-in-out infinite;
+}
+
+.hero-centered {
+  position: relative;
+}
+
+.hero-centered::before,
+.hero-centered::after {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 0 16px var(--accent-glow);
+  content: "";
+  animation: pixel-orbit 7s linear infinite;
+}
+
+.hero-centered::before {
+  top: 22%;
+  left: 9%;
+}
+
+.hero-centered::after {
+  right: 11%;
+  bottom: 20%;
+  animation-delay: -3.5s;
+}
+
+.hero-centered h1 {
+  animation: title-glow 4s ease-in-out infinite;
+}
+
+.game-card,
+.about-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card::before,
+.about-panel::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 25%, rgba(255, 255, 255, 0.08), transparent 72%);
+  content: "";
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.game-card:hover::before,
+.game-card:focus-within::before,
+.about-panel:hover::before {
+  transform: translateX(120%);
+}
+
+.game-card:hover {
+  transform: translateY(-8px) rotateX(2deg);
+}
+
+.inline-button,
+.back-button {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.inline-button:hover,
+.inline-button:focus-visible,
+.back-button:hover,
+.back-button:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px var(--accent-soft);
+}
+
+@keyframes header-drop {
+  from { opacity: 0; transform: translateY(-18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes header-sheen {
+  0%, 35% { transform: translateX(-110%); }
+  65%, 100% { transform: translateX(110%); }
+}
+
+@keyframes mark-pulse {
+  0%, 100% { box-shadow: 0 0 16px var(--accent-glow); }
+  50% { box-shadow: 0 0 30px var(--accent-glow), inset 0 0 14px var(--accent-soft); }
+}
+
+@keyframes pixel-orbit {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translate(30px, -18px) rotate(180deg); opacity: 1; }
+  100% { transform: translate(0, 0) rotate(360deg); opacity: 0.3; }
+}
+
+@keyframes title-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
+  50% { filter: drop-shadow(0 0 22px var(--accent-glow)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header::before,
+  .brand-mark,
+  .hero-centered::before,
+  .hero-centered::after,
+  .hero-centered h1 {
+    animation: none !important;
+  }
+}
