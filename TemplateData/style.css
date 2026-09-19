@@ -633,7 +633,7 @@ button, select, input { font: inherit; }
 }
 
 body.game-view-active .page-content > :not(.showcase) {
-  display: none;
+  display: none !important;
 }
 
 body.game-view-active .page-content {
@@ -676,7 +676,7 @@ body.game-view-active .page-content > :not(.showcase) {
 }
 
 body.game-view-active .showcase {
-  display: none;
+  display: none !important;
   animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
@@ -688,7 +688,7 @@ body.game-view-active .about-panel {
 
 body.game-view-active[data-game="pistol"] #pistol-python,
 body.game-view-active[data-game="whoo"] #whoo-gave-you-that {
-  display: block;
+  display: block !important;
 }
 
 body.games-view-active .page-content > :not(.games-area) {

@@ -181,6 +181,10 @@
       var warningBanner = document.querySelector("#unity-warning");
       var whooLoaded = false;
       var pistolLoaded = false;
+      var whooInstance = null;
+      var pistolInstance = null;
+      var pistolScript = null;
+      var whooScript = null;
       var accentColor = document.querySelector("#accent-color");
       var themeMode = document.querySelector("#theme-mode");
 
@@ -287,12 +291,13 @@
         }
 
         loadingBar.style.display = "block";
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = function() {
+        pistolScript = document.createElement("script");
+        pistolScript.src = loaderUrl;
+        pistolScript.onload = function() {
           createUnityInstance(canvas, config, function(progress) {
             progressBarFull.style.width = 100 * progress + "%";
           }).then(function(unityInstance) {
+            pistolInstance = unityInstance;
             pistolLoaded = true;
             loadingBar.style.display = "none";
             fullscreenButton.onclick = function() {
@@ -304,12 +309,12 @@
           });
         };
 
-        script.onerror = function() {
+        pistolScript.onerror = function() {
           loadingBar.style.display = "none";
           unityShowBanner("The game could not be loaded. Please refresh the page or download the desktop build.", "error");
         };
 
-        document.body.appendChild(script);
+        document.body.appendChild(pistolScript);
       }
 
       function loadWhooGame() {
@@ -323,9 +328,8 @@
         var whooProgressBarFull = document.querySelector("#whoo-progress-bar-full");
         var whooFullscreenButton = document.querySelector("#whoo-fullscreen-button");
         var whooWarning = document.querySelector("#whoo-warning");
-        var whooScript = document.createElement("script");
-
         whooLoadingBar.style.display = "block";
+        whooScript = document.createElement("script");
         whooScript.src = "Games/whoo-gave-you-that/Build/WebGL.loader.js";
         whooScript.onload = function() {
           createUnityInstance(whooCanvas, {
@@ -343,6 +347,7 @@
           }, function(progress) {
             whooProgressBarFull.style.width = 100 * progress + "%";
           }).then(function(unityInstance) {
+            whooInstance = unityInstance;
             whooLoaded = true;
             whooLoadingBar.style.display = "none";
             whooFullscreenButton.onclick = function() {
@@ -362,7 +367,41 @@
         document.body.appendChild(whooScript);
       }
 
+      function stopActiveGame() {
+        var quitTasks = [];
+
+        if (pistolInstance && typeof pistolInstance.Quit === "function") {
+          quitTasks.push(pistolInstance.Quit());
+          pistolInstance = null;
+        }
+        if (whooInstance && typeof whooInstance.Quit === "function") {
+          quitTasks.push(whooInstance.Quit());
+          whooInstance = null;
+        }
+
+        if (pistolScript) {
+          pistolScript.remove();
+          pistolScript = null;
+        }
+        if (whooScript) {
+          whooScript.remove();
+          whooScript = null;
+        }
+
+        pistolLoaded = false;
+        whooLoaded = false;
+        canvas.width = canvas.width;
+        document.querySelector("#whoo-unity-canvas").width = 960;
+        document.querySelector("#whoo-unity-canvas").height = 600;
+        loadingBar.style.display = "none";
+        document.querySelector("#whoo-loading-bar").style.display = "none";
+        warningBanner.replaceChildren();
+        document.querySelector("#whoo-warning").replaceChildren();
+        return Promise.all(quitTasks);
+      }
+
       function showGamesView() {
+        stopActiveGame();
         document.body.classList.remove("game-view-active");
         document.body.classList.add("games-view-active");
         document.body.removeAttribute("data-game");
@@ -385,11 +424,13 @@
       }
 
       function showHubView() {
-        document.body.classList.remove("game-view-active");
-        document.body.classList.remove("games-view-active");
-        document.body.removeAttribute("data-game");
-        history.pushState({}, "", "#games");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        stopActiveGame().then(function() {
+          document.body.classList.remove("game-view-active");
+          document.body.classList.remove("games-view-active");
+          document.body.removeAttribute("data-game");
+          history.pushState({}, "", "#top");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
       }
 
       document.querySelectorAll(".game-launch").forEach(function(link) {
