@@ -802,12 +802,14 @@
 
         function draw() {
           context.clearRect(0, 0, spaceWidth(), spaceHeight());
+          var accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#7dd3fc";
           rocks.forEach(function(rock) {
             context.save();
             context.translate(rock.x, rock.y);
             context.scale(rock.depth, rock.depth);
-            context.strokeStyle = "rgba(214, 225, 248, 0.45)";
-            context.shadowColor = "rgba(125, 211, 252, 0.4)";
+            context.strokeStyle = accent;
+            context.globalAlpha = 0.7;
+            context.shadowColor = accent;
             context.shadowBlur = 9;
             context.beginPath();
             for (var side = 0; side < 7; side += 1) {
@@ -840,8 +842,9 @@
             context.fill();
           });
           particles.forEach(function(particle) {
-            context.fillStyle = "rgba(125, 211, 252, " + particle.life + ")";
-            context.shadowColor = "rgba(125, 211, 252, 0.9)";
+            context.fillStyle = accent;
+            context.globalAlpha = particle.life;
+            context.shadowColor = accent;
             context.shadowBlur = 10;
             context.beginPath();
             context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
