@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
   color-scheme: dark;
   --page: #040814;
@@ -1012,5 +1014,226 @@ body.game-view-active .showcase {
   .site-footer {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* Pixel-night visual system */
+:root {
+  --page: #020202;
+  --page-strong: #050505;
+  --panel: rgba(8, 8, 8, 0.88);
+  --panel-strong: #090909;
+  --panel-soft: rgba(255, 255, 255, 0.035);
+  --line: color-mix(in srgb, var(--accent) 28%, #202020);
+  --ink: #f1f1e8;
+  --muted: #96968c;
+  --muted-strong: #c6c6ba;
+  --shadow: rgba(0, 0, 0, 0.82);
+}
+
+* {
+  image-rendering: auto;
+}
+
+html {
+  background: #020202;
+}
+
+body {
+  overflow-x: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 50%, transparent 50%),
+    radial-gradient(circle at 50% -10%, var(--screen-glow), transparent 42%),
+    #020202;
+  background-size: 100% 4px, 100% 100%, 100% 100%;
+  font-family: "Press Start 2P", "Courier New", monospace;
+  animation: page-breathe 8s ease-in-out infinite;
+}
+
+body::after {
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.94);
+}
+
+.page-glow {
+  opacity: 0.2;
+  filter: blur(110px);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.page-glow-two {
+  animation-delay: -7s;
+}
+
+.site-shell {
+  width: min(1120px, calc(100% - 36px));
+}
+
+.site-header {
+  border-radius: 0;
+  border-width: 0 0 1px;
+  background: rgba(2, 2, 2, 0.78);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 24px var(--accent-soft);
+}
+
+.brand-mark,
+.glass-panel,
+.stat-box,
+.main-nav,
+.download-button,
+.primary-button,
+.secondary-button,
+.inline-button,
+.back-button {
+  border-radius: 2px;
+}
+
+.brand-mark,
+.glass-panel,
+.game-card,
+.mini-card,
+.stat-box {
+  box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.08), inset 0 0 24px rgba(255,255,255,0.018);
+}
+
+.brand-copy strong,
+.hero h1,
+.screen h2,
+.section-heading h2,
+.about-panel h2,
+.game-card h3,
+.mini-card h3 {
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+.hero h1 {
+  max-width: 760px;
+  font-size: clamp(1.6rem, 3vw, 3.35rem);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.hero-text,
+.screen p,
+.game-card p,
+.about-panel p {
+  font-size: 0.78rem;
+  line-height: 2;
+}
+
+.glass-panel {
+  background: rgba(5, 5, 5, 0.82);
+  backdrop-filter: blur(14px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 28px var(--accent-soft), inset 0 0 28px var(--accent-soft);
+}
+
+.game-card,
+.mini-card {
+  animation: card-rise 0.7s both;
+}
+
+.game-card:nth-child(2),
+.mini-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.game-card:nth-child(3),
+.mini-card:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.orb-scene {
+  background: #030303;
+  box-shadow: inset 0 0 30px var(--accent-soft);
+  animation: scene-pulse 5s ease-in-out infinite;
+}
+
+.planet-main {
+  background: radial-gradient(circle at 35% 30%, #fff, var(--accent) 46%, #050505 78%);
+  animation: planet-float 5s ease-in-out infinite;
+}
+
+.ring-one,
+.ring-two {
+  border-color: var(--accent-border);
+  animation: ring-spin 12s linear infinite;
+}
+
+.ring-two {
+  animation-direction: reverse;
+  animation-duration: 18s;
+}
+
+.eyebrow,
+.tag,
+.card-badge,
+.mini-tag {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.primary-button,
+.secondary-button,
+.inline-button,
+.download-button,
+.back-button {
+  font-family: inherit;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-heading h2,
+.about-panel h2 {
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  line-height: 1.5;
+}
+
+.showcase {
+  min-height: 70vh;
+}
+
+@keyframes page-breathe {
+  0%, 100% { background-position: 0 0, 50% 0, 0 0; }
+  50% { background-position: 0 2px, 50% 8px, 0 0; }
+}
+
+@keyframes drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(0.98); }
+  to { transform: translate3d(3%, 2%, 0) scale(1.05); }
+}
+
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scene-pulse {
+  0%, 100% { box-shadow: inset 0 0 24px var(--accent-soft); }
+  50% { box-shadow: inset 0 0 48px var(--accent-soft), 0 0 24px var(--accent-soft); }
+}
+
+@keyframes planet-float {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.96); }
+  50% { transform: translate(-50%, -56%) scale(1.04); }
+}
+
+@keyframes ring-spin {
+  from { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(0deg); }
+  to { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

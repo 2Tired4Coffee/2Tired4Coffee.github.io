@@ -225,6 +225,7 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
       var whooLoaded = false;
+      var pistolLoaded = false;
       var accentColor = document.querySelector("#accent-color");
       var themeMode = document.querySelector("#theme-mode");
 
@@ -325,30 +326,36 @@
         canvas.className = "unity-mobile";
       }
 
-      loadingBar.style.display = "block";
+      function loadPistolGame() {
+        if (pistolLoaded) {
+          return;
+        }
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = function() {
-        createUnityInstance(canvas, config, function(progress) {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then(function(unityInstance) {
+        loadingBar.style.display = "block";
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = function() {
+          createUnityInstance(canvas, config, function(progress) {
+            progressBarFull.style.width = 100 * progress + "%";
+          }).then(function(unityInstance) {
+            pistolLoaded = true;
+            loadingBar.style.display = "none";
+            fullscreenButton.onclick = function() {
+              unityInstance.SetFullscreen(1);
+            };
+          }).catch(function(message) {
+            loadingBar.style.display = "none";
+            unityShowBanner(String(message), "error");
+          });
+        };
+
+        script.onerror = function() {
           loadingBar.style.display = "none";
-          fullscreenButton.onclick = function() {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch(function(message) {
-          loadingBar.style.display = "none";
-          unityShowBanner(String(message), "error");
-        });
-      };
+          unityShowBanner("The game could not be loaded. Please refresh the page or download the desktop build.", "error");
+        };
 
-      script.onerror = function() {
-        loadingBar.style.display = "none";
-        unityShowBanner("The game could not be loaded. Please refresh the page or download the desktop build.", "error");
-      };
-
-      document.body.appendChild(script);
+        document.body.appendChild(script);
+      }
 
       function loadWhooGame() {
         if (whooLoaded) {
@@ -415,6 +422,8 @@
         document.body.dataset.game = game;
         if (game === "whoo") {
           loadWhooGame();
+        } else {
+          loadPistolGame();
         }
         history.pushState({ game: game }, "", game === "whoo" ? "#whoo-gave-you-that" : "#pistol-python");
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -442,9 +451,11 @@
         });
       });
 
-      document.querySelector(".back-button").addEventListener("click", function(event) {
-        event.preventDefault();
-        showHubView();
+      document.querySelectorAll(".back-button").forEach(function(link) {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+          showHubView();
+        });
       });
 
       window.addEventListener("popstate", function() {
