@@ -16,8 +16,6 @@
   <body>
     <div class="page-glow page-glow-one"></div>
     <div class="page-glow page-glow-two"></div>
-    <canvas id="home-space" aria-hidden="true"></canvas>
-
     <div class="site-shell">
       <header class="site-header">
         <a class="brand" href="#top" aria-label="2Tired4Coffee home">
@@ -48,6 +46,7 @@
 
       <main class="page-content">
         <section class="hero hero-centered" id="top">
+          <canvas id="home-space" aria-hidden="true"></canvas>
           <div class="hero-copy">
             <p class="eyebrow">game developer / game jams</p>
             <h1>2Tired4Coffee</h1>
@@ -691,8 +690,8 @@
         function update(delta) {
           var targetX = pointer.x;
           var targetY = pointer.y;
-          cube.x += (targetX - cube.x) * Math.min(delta * 1.8, 1);
-          cube.y += (targetY - cube.y) * Math.min(delta * 1.8, 1);
+          cube.x += (targetX - cube.x) * Math.min(delta * 0.45, 1);
+          cube.y += (targetY - cube.y) * Math.min(delta * 0.45, 1);
           rockTimer += delta;
           if (rockTimer > 0.42 && rocks.length < 22) {
             addRock();
@@ -838,7 +837,7 @@
           if (event.target.closest("a, button, input, select")) return;
           if (!document.body.classList.contains("game-view-active") && !document.body.classList.contains("about-view-active")) {
             var bounds = space.getBoundingClientRect();
-            if (event.clientY >= bounds.top && event.clientY <= bounds.bottom) {
+            if (event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom) {
               fireBullet(event.clientX, event.clientY);
             }
           }
