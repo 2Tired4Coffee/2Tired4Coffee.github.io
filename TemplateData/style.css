@@ -658,12 +658,68 @@ body.games-view-active .page-content {
 }
 
 .page-content > .games-area {
-  display: none;
+  display: block;
+  animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 body.games-view-active .page-content > .games-area {
   display: block;
   animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+body:not(.game-view-active) .page-content > .showcase {
+  display: none;
+}
+
+body.game-view-active .page-content > :not(.showcase) {
+  display: none;
+}
+
+body.game-view-active .showcase {
+  display: none;
+  animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+body.game-view-active .hero-centered,
+body.game-view-active .games-area,
+body.game-view-active .about-panel {
+  display: none;
+}
+
+body.game-view-active[data-game="pistol"] #pistol-python,
+body.game-view-active[data-game="whoo"] #whoo-gave-you-that {
+  display: block;
+}
+
+body.games-view-active .page-content > :not(.games-area) {
+  display: none;
+}
+
+.hero-centered {
+  justify-content: center;
+  min-height: 42vh;
+  padding: 72px 0 38px;
+  text-align: center;
+}
+
+.hero-centered .hero-copy {
+  max-width: 860px;
+  flex: 0 1 auto;
+}
+
+.hero-centered .eyebrow {
+  margin-bottom: 24px;
+}
+
+.hero-centered h1 {
+  font-size: clamp(2.2rem, 7vw, 6.5rem);
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+}
+
+.hero-centered .hero-text {
+  max-width: 660px;
+  margin: 28px auto 0;
 }
 
 body.game-view-active .showcase {
