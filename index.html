@@ -85,6 +85,19 @@
                 <a href="#whoo-gave-you-that" class="inline-button game-launch" data-game="whoo">Play now</a>
               </div>
             </article>
+
+            <article class="game-card glass-panel">
+              <div class="card-badge">Game jam build</div>
+              <h3>Simon Says</h3>
+              <p>A memory game made by 2Tired4Coffee.</p>
+              <div class="card-row">
+                <span>WebGL</span>
+                <span>Game jam</span>
+              </div>
+              <div class="card-actions">
+                <a href="#simon-says" class="inline-button game-launch" data-game="simon">Play now</a>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -148,6 +161,31 @@
           </div>
         </section>
 
+        <section class="showcase" id="simon-says" data-game="simon">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">live build</p>
+              <h2>Play Simon Says</h2>
+            </div>
+            <a class="back-button" href="#games">← Back to games</a>
+          </div>
+
+          <div id="simon-unity-container" class="unity-desktop glass-panel">
+            <canvas id="simon-unity-canvas" width="960" height="600" tabindex="-1" aria-label="Simon Says game canvas"></canvas>
+            <div id="simon-loading-bar" aria-live="polite">
+              <div class="loading-label">Loading game</div>
+              <div id="simon-progress-bar-empty">
+                <div id="simon-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="simon-warning" aria-live="polite"> </div>
+            <div id="simon-footer">
+              <button id="simon-fullscreen-button" type="button" aria-label="Enter fullscreen">Fullscreen</button>
+              <div id="unity-build-title">Simon Says</div>
+            </div>
+          </div>
+        </section>
+
         <section class="about-panel glass-panel" id="about">
           <p class="eyebrow">about</p>
           <h2>I’m 2Tired4Coffee, a game developer.</h2>
@@ -175,11 +213,14 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
       var whooLoaded = false;
+      var simonLoaded = false;
       var pistolLoaded = false;
       var whooInstance = null;
+      var simonInstance = null;
       var pistolInstance = null;
       var pistolScript = null;
       var whooScript = null;
+      var simonScript = null;
       var accentColor = document.querySelector("#accent-color");
       var themeMode = document.querySelector("#theme-mode");
 
@@ -362,6 +403,55 @@
         document.body.appendChild(whooScript);
       }
 
+      function loadSimonGame() {
+        if (simonLoaded) {
+          return;
+        }
+
+        var simonCanvas = document.querySelector("#simon-unity-canvas");
+        var simonLoadingBar = document.querySelector("#simon-loading-bar");
+        var simonProgressBarFull = document.querySelector("#simon-progress-bar-full");
+        var simonFullscreenButton = document.querySelector("#simon-fullscreen-button");
+        var simonWarning = document.querySelector("#simon-warning");
+        simonLoadingBar.style.display = "block";
+        simonScript = document.createElement("script");
+        simonScript.src = "Games/simon-says/Build/WebGL.loader.js";
+        simonScript.onload = function() {
+          createUnityInstance(simonCanvas, {
+            dataUrl: "Games/simon-says/Build/WebGL.data.unityweb",
+            frameworkUrl: "Games/simon-says/Build/WebGL.framework.js.unityweb",
+            codeUrl: "Games/simon-says/Build/WebGL.wasm",
+            streamingAssetsUrl: "Games/simon-says/StreamingAssets",
+            companyName: "2Tired4Coffee",
+            productName: "Simon Says",
+            productVersion: "1.0",
+            showBanner: function(message) {
+              simonWarning.textContent = message;
+              simonWarning.style.display = "block";
+            }
+          }, function(progress) {
+            simonProgressBarFull.style.width = 100 * progress + "%";
+          }).then(function(unityInstance) {
+            simonInstance = unityInstance;
+            simonLoaded = true;
+            simonLoadingBar.style.display = "none";
+            simonFullscreenButton.onclick = function() {
+              unityInstance.SetFullscreen(1);
+            };
+          }).catch(function(message) {
+            simonLoadingBar.style.display = "none";
+            simonWarning.textContent = String(message);
+            simonWarning.style.display = "block";
+          });
+        };
+        simonScript.onerror = function() {
+          simonLoadingBar.style.display = "none";
+          simonWarning.textContent = "The game could not be loaded.";
+          simonWarning.style.display = "block";
+        };
+        document.body.appendChild(simonScript);
+      }
+
       function stopActiveGame() {
         var quitTasks = [];
 
@@ -373,6 +463,10 @@
           quitTasks.push(Promise.resolve(whooInstance.Quit()).catch(function() {}));
           whooInstance = null;
         }
+        if (simonInstance && typeof simonInstance.Quit === "function") {
+          quitTasks.push(Promise.resolve(simonInstance.Quit()).catch(function() {}));
+          simonInstance = null;
+        }
 
         if (pistolScript) {
           pistolScript.remove();
@@ -382,16 +476,25 @@
           whooScript.remove();
           whooScript = null;
         }
+        if (simonScript) {
+          simonScript.remove();
+          simonScript = null;
+        }
 
         pistolLoaded = false;
         whooLoaded = false;
+        simonLoaded = false;
         canvas.width = canvas.width;
         document.querySelector("#whoo-unity-canvas").width = 960;
         document.querySelector("#whoo-unity-canvas").height = 600;
+        document.querySelector("#simon-unity-canvas").width = 960;
+        document.querySelector("#simon-unity-canvas").height = 600;
         loadingBar.style.display = "none";
         document.querySelector("#whoo-loading-bar").style.display = "none";
+        document.querySelector("#simon-loading-bar").style.display = "none";
         warningBanner.replaceChildren();
         document.querySelector("#whoo-warning").replaceChildren();
+        document.querySelector("#simon-warning").replaceChildren();
         return Promise.all(quitTasks);
       }
 
@@ -427,10 +530,12 @@
         document.body.dataset.game = game;
         if (game === "whoo") {
           loadWhooGame();
+        } else if (game === "simon") {
+          loadSimonGame();
         } else {
           loadPistolGame();
         }
-        var gameHash = game === "whoo" ? "#whoo-gave-you-that" : "#pistol-python";
+        var gameHash = game === "whoo" ? "#whoo-gave-you-that" : game === "simon" ? "#simon-says" : "#pistol-python";
         if (updateHistory !== false && window.location.hash !== gameHash) {
           history.pushState({ game: game }, "", gameHash);
         }
@@ -469,6 +574,8 @@
           showGameView("pistol", false);
         } else if (window.location.hash === "#whoo-gave-you-that") {
           showGameView("whoo", false);
+        } else if (window.location.hash === "#simon-says") {
+          showGameView("simon", false);
         } else if (window.location.hash === "#games") {
           showGamesView(false);
         } else if (window.location.hash === "#about") {
@@ -482,6 +589,8 @@
         showGameView("pistol", false);
       } else if (window.location.hash === "#whoo-gave-you-that") {
         showGameView("whoo", false);
+      } else if (window.location.hash === "#simon-says") {
+        showGameView("simon", false);
       } else if (window.location.hash === "#games") {
         showGamesView(false);
       } else if (window.location.hash === "#about") {
