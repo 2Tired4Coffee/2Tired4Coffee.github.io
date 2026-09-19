@@ -4,30 +4,39 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#090b10">
-    <title>Pistol Python | Play in browser</title>
+    <meta name="description" content="2Tired4Coffee is a creative game hub featuring Pistol Python and a collection of arcade experiments, prototypes, and browser builds.">
+    <meta name="theme-color" content="#040814">
+    <meta property="og:title" content="2Tired4Coffee | Games & experiments">
+    <meta property="og:description" content="A glassmorphism game hub for 2Tired4Coffee with Pistol Python and a growing collection of creations.">
+    <meta property="og:type" content="website">
+    <title>2Tired4Coffee | Games & experiments</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <div class="page-glow page-glow-one"></div>
+    <div class="page-glow page-glow-two"></div>
+
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="." aria-label="Pistol Python home">
-          <span class="brand-mark" aria-hidden="true">
-            <svg class="snake-icon" viewBox="0 0 24 24" role="img" aria-label="Snake icon">
-              <path d="M5 5h5v3H7v3h5V8h3v6h4v5h-5v-3h2v-2h-4v3H7v-3h3v-3H5z" fill="currentColor"></path>
-              <rect x="16" y="9" width="2" height="2" fill="currentColor"></rect>
-            </svg>
-          </span>
-          <span>
-            <strong>Pistol Python</strong>
-            <small>Browser edition</small>
+        <a class="brand" href="#top" aria-label="2Tired4Coffee home">
+          <span class="brand-mark" aria-hidden="true">2T</span>
+          <span class="brand-copy">
+            <strong>2Tired4Coffee</strong>
+            <small>games &amp; experiments</small>
           </span>
         </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#games">Games</a>
+          <a href="#projects">Creations</a>
+          <a href="#about">About</a>
+        </nav>
+
         <div class="header-tools">
           <label class="accent-picker" for="accent-color">
             <span>Accent</span>
-            <input id="accent-color" type="color" value="#f2b84b" aria-label="Choose accent color" title="Choose accent color">
+            <input id="accent-color" type="color" value="#7dd3fc" aria-label="Choose accent color" title="Choose accent color">
           </label>
           <label class="theme-picker" for="theme-mode">
             <span>Theme</span>
@@ -36,48 +45,200 @@
               <option value="light">Light</option>
             </select>
           </label>
-          <a class="download-button" href="PistolPython.zip" download="PistolPython.zip" aria-label="Download Pistol Python" title="Download Pistol Python">
-            <span class="download-glyph" aria-hidden="true"></span>
-            <span>Download</span>
-          </a>
-          <div class="header-status"><span class="status-dot"></span> Ready to play</div>
+          <a class="download-button" href="PistolPython.zip" download="PistolPython.zip" aria-label="Download Pistol Python" title="Download Pistol Python">Download</a>
         </div>
       </header>
 
-      <main class="game-area">
-        <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width="1280" height="720" tabindex="-1"></canvas>
-          <div id="unity-loading-bar">
-            <div class="loading-label">Loading game</div>
-            <div id="unity-progress-bar-empty">
-              <div id="unity-progress-bar-full"></div>
+      <main class="page-content">
+        <section class="hero" id="top">
+          <div class="hero-copy">
+            <p class="eyebrow">independent play lab</p>
+            <h1>Small games. Big energy. Late-night ideas made playable.</h1>
+            <p class="hero-text">
+              2Tired4Coffee is a creative hub for arcade experiments, browser builds, and weird little worlds built with too much caffeine and not enough sleep.
+            </p>
+
+            <div class="cta-row">
+              <a class="primary-button" href="#games">Explore the vault</a>
+              <a class="secondary-button" href="#pistol-python">Play now</a>
+            </div>
+
+            <div class="stat-row" aria-label="Studio stats">
+              <div class="stat-box">
+                <strong>05+</strong>
+                <span>builds</span>
+              </div>
+              <div class="stat-box">
+                <strong>24/7</strong>
+                <span>chaos mode</span>
+              </div>
+              <div class="stat-box">
+                <strong>∞</strong>
+                <span>ideas</span>
+              </div>
             </div>
           </div>
-          <div id="unity-warning"> </div>
-          <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">
-              <span class="fullscreen-glyph" aria-hidden="true"></span>
-              <span>Fullscreen</span>
-            </button>
-            <div id="unity-build-title">Pistol Python</div>
-          </div>
-        </div>
 
-        <div class="game-footer">
-          <span>1280 × 720</span>
-          <span class="footer-divider"></span>
-          <span>Fullscreen recommended</span>
-        </div>
+          <div class="hero-visual glass-panel">
+            <div class="device-window">
+              <div class="window-bar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+
+              <div class="screen">
+                <div class="screen-header">
+                  <span class="mini-label">Featured</span>
+                  <span class="tag">Arcade</span>
+                </div>
+
+                <h2>Pistol Python</h2>
+                <p>Fast reflexes. Neon danger. Pure browser chaos.</p>
+
+                <div class="orb-scene" aria-hidden="true">
+                  <div class="planet-main"></div>
+                  <div class="ring ring-one"></div>
+                  <div class="ring ring-two"></div>
+                </div>
+
+                <div class="screen-actions">
+                  <button type="button">Play</button>
+                  <button type="button" class="ghost">Stats</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="project-section" id="games">
+          <div class="section-heading">
+            <p class="eyebrow">games</p>
+            <h2>Loaded in the rotation</h2>
+          </div>
+
+          <div class="card-grid">
+            <article class="game-card featured-card glass-panel">
+              <div class="card-badge">Featured release</div>
+              <h3>Pistol Python</h3>
+              <p>High-speed action with a retro arcade edge, built for quick sessions and instant replayability.</p>
+              <div class="card-row">
+                <span>WebGL</span>
+                <span>Desktop</span>
+              </div>
+              <div class="card-actions">
+                <a href="#pistol-python" class="inline-button">Play now</a>
+                <a href="PistolPython.zip" class="inline-button light" download="PistolPython.zip">Download</a>
+              </div>
+            </article>
+
+            <article class="game-card glass-panel">
+              <div class="card-badge">Prototype</div>
+              <h3>Night Shift</h3>
+              <p>A tense synth-driven survival experiment with drifting enemies and razor-thin window frames.</p>
+              <div class="card-row">
+                <span>Prototype</span>
+                <span>Dev build</span>
+              </div>
+              <div class="card-actions">
+                <a href="#projects" class="inline-button">View concept</a>
+              </div>
+            </article>
+
+            <article class="game-card glass-panel">
+              <div class="card-badge">Puzzle</div>
+              <h3>Byte Bloom</h3>
+              <p>Minimal puzzle loops that reward experimentation, pattern recognition, and tiny clever wins.</p>
+              <div class="card-row">
+                <span>Loop</span>
+                <span>Systems</span>
+              </div>
+              <div class="card-actions">
+                <a href="#projects" class="inline-button">Explore</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="project-section" id="projects">
+          <div class="section-heading">
+            <p class="eyebrow">creations</p>
+            <h2>Other experiments from the lab</h2>
+          </div>
+
+          <div class="mini-grid">
+            <article class="mini-card glass-panel">
+              <span class="mini-tag">Tooling</span>
+              <h3>UI System Kit</h3>
+              <p>Reusable motion and game-prototype interface patterns built for quick iteration.</p>
+            </article>
+
+            <article class="mini-card glass-panel">
+              <span class="mini-tag">Art</span>
+              <h3>Pixel Noise</h3>
+              <p>Procedural motion studies, color palettes, and atmosphere tests for future game worlds.</p>
+            </article>
+
+            <article class="mini-card glass-panel">
+              <span class="mini-tag">Playtest</span>
+              <h3>Chaos Jam</h3>
+              <p>Fast, weird, and delightful sessions designed to reveal which ideas deserve a full build.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="showcase" id="pistol-python">
+          <div class="section-heading">
+            <p class="eyebrow">live build</p>
+            <h2>Play Pistol Python</h2>
+          </div>
+
+          <div id="unity-container" class="unity-desktop glass-panel">
+            <canvas id="unity-canvas" width="1280" height="720" tabindex="-1" aria-label="Pistol Python game canvas"></canvas>
+            <div id="unity-loading-bar" aria-live="polite">
+              <div class="loading-label">Loading game</div>
+              <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="unity-warning" aria-live="polite"> </div>
+            <div id="unity-footer">
+              <div id="unity-webgl-logo"></div>
+              <button id="unity-fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">
+                <span class="fullscreen-glyph" aria-hidden="true"></span>
+                <span>Fullscreen</span>
+              </button>
+              <div id="unity-build-title">Pistol Python</div>
+            </div>
+          </div>
+
+          <div class="game-footer">
+            <span>1280 × 720</span>
+            <span class="footer-divider"></span>
+            <span>Fullscreen recommended</span>
+          </div>
+        </section>
+
+        <section class="about-panel glass-panel" id="about">
+          <p class="eyebrow">about</p>
+          <h2>Built for quick sessions and long obsessions.</h2>
+          <p>
+            2Tired4Coffee is about turning rough prototypes, strange ideas, and a little bit of caffeine-fueled chaos into toy worlds that feel alive. The goal is simple: create something playable, personal, and worth revisiting.
+          </p>
+        </section>
       </main>
 
       <footer class="site-footer">
         <span>Built for quick sessions.</span>
-        <span>© RJgames</span>
+        <span>© 2Tired4Coffee</span>
       </footer>
     </div>
-    <script>
 
+    <noscript>
+      <div class="no-script-banner">JavaScript is required to load the browser version of Pistol Python.</div>
+    </noscript>
+
+    <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -87,13 +248,30 @@
       var accentColor = document.querySelector("#accent-color");
       var themeMode = document.querySelector("#theme-mode");
 
+      var storage = {
+        get: function(key) {
+          try {
+            return window.localStorage.getItem(key);
+          } catch (error) {
+            return null;
+          }
+        },
+        set: function(key, value) {
+          try {
+            window.localStorage.setItem(key, value);
+          } catch (error) {
+            // Ignore storage errors so the UI still works in restricted browsers.
+          }
+        }
+      };
+
       function setThemeMode(theme) {
         document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "light" ? "#e8f2e4" : "#030604");
-        localStorage.setItem("pistol-python-theme", theme);
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "light" ? "#edf6ff" : "#040814");
+        storage.set("tired4coffee-theme", theme);
       }
 
-      var savedTheme = localStorage.getItem("pistol-python-theme");
+      var savedTheme = storage.get("tired4coffee-theme");
       if (savedTheme === "light" || savedTheme === "dark") {
         themeMode.value = savedTheme;
       }
@@ -107,17 +285,18 @@
         var red = parseInt(hex.slice(0, 2), 16);
         var green = parseInt(hex.slice(2, 4), 16);
         var blue = parseInt(hex.slice(4, 6), 16);
+
         document.documentElement.style.setProperty("--accent", color);
         document.documentElement.style.setProperty("--accent-rgb", red + ", " + green + ", " + blue);
-        document.documentElement.style.setProperty("--screen-glow", "rgba(" + red + ", " + green + ", " + blue + ", 0.24)");
-        document.documentElement.style.setProperty("--scanline", "rgba(" + red + ", " + green + ", " + blue + ", 0.04)");
-        document.documentElement.style.setProperty("--accent-soft", color + "24");
-        document.documentElement.style.setProperty("--accent-glow", color + "a6");
-        document.documentElement.style.setProperty("--accent-border", color + "a6");
-        localStorage.setItem("pistol-python-accent", color);
+        document.documentElement.style.setProperty("--screen-glow", "rgba(" + red + ", " + green + ", " + blue + ", 0.25)");
+        document.documentElement.style.setProperty("--scanline", "rgba(" + red + ", " + green + ", " + blue + ", 0.05)");
+        document.documentElement.style.setProperty("--accent-soft", color + "26");
+        document.documentElement.style.setProperty("--accent-glow", color + "88");
+        document.documentElement.style.setProperty("--accent-border", color + "b0");
+        storage.set("tired4coffee-accent", color);
       }
 
-      var savedAccent = localStorage.getItem("pistol-python-accent");
+      var savedAccent = storage.get("tired4coffee-accent");
       if (savedAccent && /^#[0-9a-f]{6}$/i.test(savedAccent)) {
         accentColor.value = savedAccent;
       }
@@ -126,12 +305,6 @@
         setAccentColor(event.target.value);
       });
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -139,9 +312,10 @@
         var div = document.createElement('div');
         div.innerHTML = msg;
         warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+        if (type == 'error') {
+          div.style = 'background: rgba(255, 80, 80, 0.2); border: 1px solid rgba(255, 110, 110, 0.6); color: #ffd5d5; padding: 10px;';
+        } else {
+          if (type == 'warning') div.style = 'background: rgba(255, 221, 130, 0.2); padding: 10px; color: #fff3b7;';
           setTimeout(function() {
             warningBanner.removeChild(div);
             updateBannerVisibility();
@@ -157,69 +331,60 @@
         frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
         codeUrl: buildUrl + "/WebGL.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "RJgames",
+        companyName: "2Tired4Coffee",
         productName: "Pistol Python",
         productVersion: "1.0",
         showBanner: unityShowBanner,
       };
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
         canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-        canvas.style.width = "1280px";
-        canvas.style.height = "720px";
       }
 
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
       script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
+      script.onload = function() {
+        createUnityInstance(canvas, config, function(progress) {
           progressBarFull.style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
-              }).catch((message) => {
-                alert(message);
-              });
-            };
+        }).then(function(unityInstance) {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = function() {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch(function(message) {
+          loadingBar.style.display = "none";
+          unityShowBanner(String(message), "error");
+        });
+      };
+
+      script.onerror = function() {
+        loadingBar.style.display = "none";
+        unityShowBanner("The game could not be loaded. Please refresh the page or download the desktop build.", "error");
+      };
 
       document.body.appendChild(script);
 
+      document.querySelectorAll('.game-card, .mini-card').forEach(function(card) {
+        card.addEventListener('pointermove', function(event) {
+          var rect = card.getBoundingClientRect();
+          var x = event.clientX - rect.left;
+          var y = event.clientY - rect.top;
+          var rotateX = ((y / rect.height) - 0.5) * -8;
+          var rotateY = ((x / rect.width) - 0.5) * 8;
+          card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+        });
+
+        card.addEventListener('pointerleave', function() {
+          card.style.transform = '';
+        });
+      });
     </script>
   </body>
 </html>
