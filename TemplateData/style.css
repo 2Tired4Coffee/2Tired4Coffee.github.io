@@ -152,6 +152,39 @@ button, select, input { font: inherit; }
   box-shadow: 0 0 20px var(--accent-glow);
 }
 
+.brand-mark.tired-coffee-logo {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  min-width: 58px;
+  padding: 0 7px 8px;
+  border-radius: 13px;
+}
+
+.brand-mark.tired-coffee-logo .logo-zzz {
+  align-self: flex-start;
+  margin-top: 7px;
+  font-size: 0.38rem;
+}
+
+.brand-mark.tired-coffee-logo .logo-mug {
+  width: 20px;
+  height: 14px;
+}
+
+.brand-mark.tired-coffee-logo .logo-mug::before {
+  top: 2px;
+  right: -7px;
+  width: 6px;
+  height: 7px;
+}
+
+.brand-mark.tired-coffee-logo .logo-mug::after {
+  top: -8px;
+  left: 3px;
+}
+
 .brand-copy {
   display: flex;
   flex-direction: column;
