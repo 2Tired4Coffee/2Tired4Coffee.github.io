@@ -371,11 +371,11 @@
         var quitTasks = [];
 
         if (pistolInstance && typeof pistolInstance.Quit === "function") {
-          quitTasks.push(pistolInstance.Quit());
+          quitTasks.push(Promise.resolve(pistolInstance.Quit()).catch(function() {}));
           pistolInstance = null;
         }
         if (whooInstance && typeof whooInstance.Quit === "function") {
-          quitTasks.push(whooInstance.Quit());
+          quitTasks.push(Promise.resolve(whooInstance.Quit()).catch(function() {}));
           whooInstance = null;
         }
 
@@ -400,16 +400,18 @@
         return Promise.all(quitTasks);
       }
 
-      function showGamesView() {
+      function showGamesView(updateHistory) {
         stopActiveGame();
         document.body.classList.remove("game-view-active");
         document.body.classList.add("games-view-active");
         document.body.removeAttribute("data-game");
-        history.pushState({}, "", "#games");
+        if (updateHistory !== false && window.location.hash !== "#games") {
+          history.pushState({}, "", "#games");
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      function showGameView(game) {
+      function showGameView(game, updateHistory) {
         game = game || "pistol";
         document.body.classList.remove("games-view-active");
         document.body.classList.add("game-view-active");
@@ -419,16 +421,21 @@
         } else {
           loadPistolGame();
         }
-        history.pushState({ game: game }, "", game === "whoo" ? "#whoo-gave-you-that" : "#pistol-python");
+        var gameHash = game === "whoo" ? "#whoo-gave-you-that" : "#pistol-python";
+        if (updateHistory !== false && window.location.hash !== gameHash) {
+          history.pushState({ game: game }, "", gameHash);
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      function showHubView() {
+      function showHubView(updateHistory) {
         stopActiveGame().then(function() {
           document.body.classList.remove("game-view-active");
           document.body.classList.remove("games-view-active");
           document.body.removeAttribute("data-game");
-          history.pushState({}, "", "#top");
+          if (updateHistory !== false && window.location.hash !== "#top") {
+            history.pushState({}, "", "#top");
+          }
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
@@ -456,22 +463,22 @@
 
       window.addEventListener("popstate", function() {
         if (window.location.hash === "#pistol-python") {
-          showGameView("pistol");
+          showGameView("pistol", false);
         } else if (window.location.hash === "#whoo-gave-you-that") {
-          showGameView("whoo");
+          showGameView("whoo", false);
         } else if (window.location.hash === "#games") {
-          showGamesView();
+          showGamesView(false);
         } else {
-          showHubView();
+          showHubView(false);
         }
       });
 
       if (window.location.hash === "#pistol-python") {
-        showGameView("pistol");
+        showGameView("pistol", false);
       } else if (window.location.hash === "#whoo-gave-you-that") {
-        showGameView("whoo");
+        showGameView("whoo", false);
       } else if (window.location.hash === "#games") {
-        showGamesView();
+        showGamesView(false);
       }
 
       document.querySelectorAll(".brand, .main-nav a[href=\"#about\"]").forEach(function(link) {
