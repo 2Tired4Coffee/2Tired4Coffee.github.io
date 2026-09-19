@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <title>2Tired4Coffee | Games & experiments</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css?v=2tired4coffee-hub-2">
+    <link rel="stylesheet" href="TemplateData/style.css?v=2tired4coffee-hub-3">
   </head>
   <body>
     <div class="page-glow page-glow-one"></div>
@@ -35,8 +35,8 @@
 
         <div class="header-tools">
           <label class="accent-picker" for="accent-color">
-            <span>Accent</span>
-            <input id="accent-color" type="color" value="#7dd3fc" aria-label="Choose accent color" title="Choose accent color">
+            <span>Hue</span>
+            <input id="accent-color" type="range" min="0" max="360" value="198" aria-label="Choose accent hue" title="Choose accent hue">
           </label>
           <label class="theme-picker" for="theme-mode">
             <span>Theme</span>
@@ -60,7 +60,7 @@
 
             <div class="cta-row">
               <a class="primary-button" href="#games">Explore the vault</a>
-              <a class="secondary-button" href="#pistol-python">Play now</a>
+              <a class="secondary-button game-launch" href="#pistol-python">Play now</a>
             </div>
 
             <div class="stat-row" aria-label="Studio stats">
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="screen-actions">
-                  <button type="button">Play</button>
+                  <button type="button" class="game-launch">Play</button>
                   <button type="button" class="ghost">Stats</button>
                 </div>
               </div>
@@ -127,7 +127,7 @@
                 <span>Desktop</span>
               </div>
               <div class="card-actions">
-                <a href="#pistol-python" class="inline-button">Play now</a>
+                <a href="#pistol-python" class="inline-button game-launch">Play now</a>
                 <a href="PistolPython.zip" class="inline-button light" download="PistolPython.zip">Download</a>
               </div>
             </article>
@@ -189,8 +189,11 @@
 
         <section class="showcase" id="pistol-python">
           <div class="section-heading">
-            <p class="eyebrow">live build</p>
-            <h2>Play Pistol Python</h2>
+            <div>
+              <p class="eyebrow">live build</p>
+              <h2>Play Pistol Python</h2>
+            </div>
+            <a class="back-button" href="#games">← Back to hub</a>
           </div>
 
           <div id="unity-container" class="unity-desktop glass-panel">
@@ -280,29 +283,28 @@
         setThemeMode(event.target.value);
       });
 
-      function setAccentColor(color) {
-        var hex = color.slice(1);
-        var red = parseInt(hex.slice(0, 2), 16);
-        var green = parseInt(hex.slice(2, 4), 16);
-        var blue = parseInt(hex.slice(4, 6), 16);
-
-        document.documentElement.style.setProperty("--accent", color);
-        document.documentElement.style.setProperty("--accent-rgb", red + ", " + green + ", " + blue);
-        document.documentElement.style.setProperty("--screen-glow", "rgba(" + red + ", " + green + ", " + blue + ", 0.25)");
-        document.documentElement.style.setProperty("--scanline", "rgba(" + red + ", " + green + ", " + blue + ", 0.05)");
-        document.documentElement.style.setProperty("--accent-soft", color + "26");
-        document.documentElement.style.setProperty("--accent-glow", color + "88");
-        document.documentElement.style.setProperty("--accent-border", color + "b0");
-        storage.set("tired4coffee-accent", color);
+      function setAccentHue(hue) {
+        var normalizedHue = ((Number(hue) % 360) + 360) % 360;
+        document.documentElement.style.setProperty("--hue", normalizedHue);
+        document.documentElement.style.setProperty("--accent", "hsl(" + normalizedHue + " 88% 72%)");
+        document.documentElement.style.setProperty("--accent-soft", "hsl(" + normalizedHue + " 88% 72% / 0.18)");
+        document.documentElement.style.setProperty("--accent-glow", "hsl(" + normalizedHue + " 88% 72% / 0.55)");
+        document.documentElement.style.setProperty("--accent-border", "hsl(" + normalizedHue + " 88% 72% / 0.8)");
+        document.documentElement.style.setProperty("--screen-glow", "hsl(" + normalizedHue + " 88% 72% / 0.22)");
+        document.documentElement.style.setProperty("--scanline", "hsl(" + normalizedHue + " 88% 72% / 0.05)");
+        document.documentElement.style.setProperty("--hero-gradient", "radial-gradient(circle at top left, hsl(" + normalizedHue + " 88% 62% / 0.30), transparent 40%), radial-gradient(circle at bottom right, hsl(" + ((normalizedHue + 90) % 360) + " 75% 60% / 0.18), transparent 36%)");
+        document.documentElement.style.setProperty("--glow-one", "hsl(" + ((normalizedHue + 260) % 360) + " 78% 58% / 0.38)");
+        document.documentElement.style.setProperty("--glow-two", "hsl(" + ((normalizedHue + 25) % 360) + " 88% 58% / 0.3)");
+        storage.set("tired4coffee-hue", normalizedHue);
       }
 
-      var savedAccent = storage.get("tired4coffee-accent");
-      if (savedAccent && /^#[0-9a-f]{6}$/i.test(savedAccent)) {
-        accentColor.value = savedAccent;
+      var savedHue = storage.get("tired4coffee-hue");
+      if (savedHue !== null && !isNaN(Number(savedHue))) {
+        accentColor.value = savedHue;
       }
-      setAccentColor(accentColor.value);
+      setAccentHue(accentColor.value);
       accentColor.addEventListener("input", function(event) {
-        setAccentColor(event.target.value);
+        setAccentHue(event.target.value);
       });
 
       function unityShowBanner(msg, type) {
@@ -370,6 +372,48 @@
       };
 
       document.body.appendChild(script);
+
+      function showGameView() {
+        document.body.classList.add("game-view-active");
+        history.pushState({ game: "pistol-python" }, "", "#pistol-python");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showHubView() {
+        document.body.classList.remove("game-view-active");
+        history.pushState({}, "", "#games");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.querySelectorAll(".game-launch").forEach(function(link) {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+          showGameView();
+        });
+      });
+
+      document.querySelector(".back-button").addEventListener("click", function(event) {
+        event.preventDefault();
+        showHubView();
+      });
+
+      window.addEventListener("popstate", function() {
+        if (window.location.hash === "#pistol-python") {
+          document.body.classList.add("game-view-active");
+        } else {
+          document.body.classList.remove("game-view-active");
+        }
+      });
+
+      if (window.location.hash === "#pistol-python") {
+        document.body.classList.add("game-view-active");
+      }
+
+      document.querySelectorAll(".main-nav a, .brand").forEach(function(link) {
+        link.addEventListener("click", function() {
+          document.body.classList.remove("game-view-active");
+        });
+      });
 
       document.querySelectorAll('.game-card, .mini-card').forEach(function(card) {
         card.addEventListener('pointermove', function(event) {

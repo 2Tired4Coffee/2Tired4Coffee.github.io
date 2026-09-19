@@ -18,6 +18,8 @@
   --scanline: rgba(125, 211, 252, 0.05);
   --screen-glow: rgba(125, 211, 252, 0.22);
   --hero-gradient: radial-gradient(circle at top left, rgba(125, 211, 252, 0.30), transparent 40%), radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.18), transparent 36%);
+  --glow-one: rgba(124, 92, 255, 0.42);
+  --glow-two: rgba(38, 200, 255, 0.28);
 }
 
 :root[data-theme="light"] {
@@ -40,6 +42,8 @@
   --scanline: rgba(74, 141, 247, 0.04);
   --screen-glow: rgba(74, 141, 247, 0.11);
   --hero-gradient: radial-gradient(circle at top left, rgba(74, 141, 247, 0.12), transparent 35%), radial-gradient(circle at bottom right, rgba(175, 122, 247, 0.14), transparent 32%);
+  --glow-one: rgba(124, 92, 255, 0.2);
+  --glow-two: rgba(38, 140, 255, 0.16);
 }
 
 * { box-sizing: border-box; }
@@ -73,12 +77,12 @@ button, select, input { font: inherit; }
 .page-glow-one {
   top: -12rem;
   left: -6rem;
-  background: rgba(124, 92, 255, 0.42);
+  background: var(--glow-one);
 }
 .page-glow-two {
   right: -8rem;
   bottom: -10rem;
-  background: rgba(38, 200, 255, 0.28);
+  background: var(--glow-two);
 }
 
 .site-shell {
@@ -213,13 +217,39 @@ button, select, input { font: inherit; }
 }
 
 .accent-picker input {
-  width: 30px;
-  height: 30px;
-  padding: 2px;
+  width: 92px;
+  height: 20px;
+  padding: 0;
   border: 1px solid var(--accent-border);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.03);
   cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.accent-picker input[type="range"] {
+  appearance: none;
+  border: 0;
+  background: linear-gradient(90deg, #ff5c7a, #ffd166, #8bea9a, #72d8ff, #a78bfa, #ff5c7a);
+}
+
+.accent-picker input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.accent-picker input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
 .accent-picker input::-webkit-color-swatch-wrapper { padding: 0; }
@@ -577,6 +607,50 @@ button, select, input { font: inherit; }
 
 .showcase {
   padding-top: 54px;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted-strong);
+  text-decoration: none;
+  background: rgba(255,255,255,0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+  transform: translateX(-3px);
+  border-color: var(--accent-border);
+  color: var(--ink);
+}
+
+body.game-view-active .page-content > :not(.showcase) {
+  display: none;
+}
+
+body.game-view-active .page-content {
+  min-height: calc(100vh - 120px);
+}
+
+body.game-view-active .showcase {
+  animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes game-view-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 #unity-container {
