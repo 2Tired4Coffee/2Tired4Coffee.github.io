@@ -29,7 +29,7 @@
 
         <nav class="main-nav" aria-label="Main navigation">
           <a href="#games" class="games-nav-link">Games</a>
-          <a href="#about">About</a>
+          <a href="#about" class="about-nav-link">About</a>
         </nav>
 
         <div class="header-tools">
@@ -157,7 +157,7 @@
           <p class="eyebrow">about</p>
           <h2>I’m 2Tired4Coffee, a game developer.</h2>
           <p>
-            These are my games, made in game jams.
+            I’m a college student who codes and enjoys game development. I make games in game jams and build weird, playable ideas from scratch.
           </p>
         </section>
       </main>
@@ -403,6 +403,7 @@
       function showGamesView(updateHistory) {
         stopActiveGame();
         document.body.classList.remove("game-view-active");
+        document.body.classList.remove("about-view-active");
         document.body.classList.add("games-view-active");
         document.body.removeAttribute("data-game");
         if (updateHistory !== false && window.location.hash !== "#games") {
@@ -411,9 +412,22 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
+      function showAboutView(updateHistory) {
+        stopActiveGame();
+        document.body.classList.remove("game-view-active");
+        document.body.classList.remove("games-view-active");
+        document.body.classList.add("about-view-active");
+        document.body.removeAttribute("data-game");
+        if (updateHistory !== false && window.location.hash !== "#about") {
+          history.pushState({}, "", "#about");
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
       function showGameView(game, updateHistory) {
         game = game || "pistol";
         document.body.classList.remove("games-view-active");
+        document.body.classList.remove("about-view-active");
         document.body.classList.add("game-view-active");
         document.body.dataset.game = game;
         if (game === "whoo") {
@@ -432,6 +446,7 @@
         stopActiveGame().then(function() {
           document.body.classList.remove("game-view-active");
           document.body.classList.remove("games-view-active");
+          document.body.classList.remove("about-view-active");
           document.body.removeAttribute("data-game");
           if (updateHistory !== false && window.location.hash !== "#top") {
             history.pushState({}, "", "#top");
@@ -454,6 +469,13 @@
         });
       });
 
+      document.querySelectorAll(".about-nav-link").forEach(function(link) {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+          showAboutView();
+        });
+      });
+
       document.querySelectorAll(".back-button").forEach(function(link) {
         link.addEventListener("click", function(event) {
           event.preventDefault();
@@ -468,6 +490,8 @@
           showGameView("whoo", false);
         } else if (window.location.hash === "#games") {
           showGamesView(false);
+        } else if (window.location.hash === "#about") {
+          showAboutView(false);
         } else {
           showHubView(false);
         }
@@ -479,12 +503,15 @@
         showGameView("whoo", false);
       } else if (window.location.hash === "#games") {
         showGamesView(false);
+      } else if (window.location.hash === "#about") {
+        showAboutView(false);
       }
 
-      document.querySelectorAll(".brand, .main-nav a[href=\"#about\"]").forEach(function(link) {
+      document.querySelectorAll(".brand").forEach(function(link) {
         link.addEventListener("click", function() {
           document.body.classList.remove("game-view-active");
           document.body.classList.remove("games-view-active");
+          document.body.classList.remove("about-view-active");
         });
       });
 

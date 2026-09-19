@@ -650,7 +650,7 @@ body.game-view-active[data-game="whoo"] #whoo-gave-you-that {
 }
 
 body.games-view-active .page-content > :not(.games-area) {
-  display: none;
+  display: none !important;
 }
 
 body.games-view-active .page-content {
@@ -664,6 +664,19 @@ body.games-view-active .page-content {
 
 body.games-view-active .page-content > .games-area {
   display: block;
+  animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+body.about-view-active .page-content > :not(.about-panel) {
+  display: none !important;
+}
+
+body.about-view-active .page-content {
+  min-height: calc(100vh - 120px);
+}
+
+body.about-view-active .about-panel {
+  display: block !important;
   animation: game-view-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
