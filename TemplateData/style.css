@@ -67,11 +67,12 @@ a { color: inherit; }
 button, select, input { font: inherit; }
 
 #home-space {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 92px;
+  left: 0;
   z-index: 0;
   width: 100vw;
-  height: 100vh;
+  height: 620px;
   opacity: 0.72;
   pointer-events: none;
   mix-blend-mode: screen;
@@ -1218,6 +1219,11 @@ body.game-view-active .showcase {
   .site-footer {
     flex-direction: column;
     text-align: center;
+  }
+
+  #home-space {
+    top: 84px;
+    height: 520px;
   }
 }
 
