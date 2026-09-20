@@ -1524,8 +1524,12 @@ body::after {
 
 .hero-centered h1 {
   margin: 0;
-  font-size: clamp(2rem, 5.2vw, 4.6rem);
-  letter-spacing: 0.015em;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(1.45rem, 3.4vw, 3.6rem) !important;
+  letter-spacing: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
