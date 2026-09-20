@@ -1527,12 +1527,12 @@ body::after {
   width: 100%;
   max-width: 100%;
   font-family: "Press Start 2P", "Courier New", monospace;
-  font-size: 1.25rem !important;
-  letter-spacing: -0.06em;
+  font-size: 1.8rem !important;
+  letter-spacing: -0.065em;
   line-height: 1.4;
   white-space: nowrap;
   text-shadow: 0 0 7px var(--accent-glow);
-  transform: scaleX(0.82);
+  transform: scaleX(0.88);
   transform-origin: center;
 }
 
