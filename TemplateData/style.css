@@ -1526,10 +1526,11 @@ body::after {
   margin: 0;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(1.45rem, 3.4vw, 3.6rem) !important;
+  font-size: clamp(1rem, 2.2vw, 2.2rem) !important;
   letter-spacing: 0;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
+  line-height: 1.35;
+  white-space: nowrap;
+  text-shadow: 0 0 10px var(--accent-glow);
   text-wrap: balance;
 }
 
