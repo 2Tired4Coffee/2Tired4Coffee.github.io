@@ -101,6 +101,19 @@
                 <a href="#simon-says" class="inline-button game-launch" data-game="simon">Play now</a>
               </div>
             </article>
+
+            <article class="game-card glass-panel">
+              <div class="card-badge">Game jam build</div>
+              <h3>Tree Bound</h3>
+              <p>A new playable game made by 2Tired4Coffee.</p>
+              <div class="card-row">
+                <span>WebGL</span>
+                <span>Game jam</span>
+              </div>
+              <div class="card-actions">
+                <a href="#tree-bound" class="inline-button game-launch" data-game="tree">Play now</a>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -200,6 +213,35 @@
           </div>
         </section>
 
+        <section class="showcase" id="tree-bound" data-game="tree">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">live build</p>
+              <h2>Play Tree Bound</h2>
+            </div>
+            <a class="back-button" href="#games">← Back to games</a>
+          </div>
+
+          <div id="tree-unity-container" class="unity-desktop glass-panel">
+            <canvas id="tree-unity-canvas" width="960" height="540" tabindex="-1" aria-label="Tree Bound game canvas"></canvas>
+            <div id="tree-loading-bar" aria-live="polite">
+              <div class="loading-label">Loading game</div>
+              <div id="tree-progress-bar-empty">
+                <div id="tree-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="tree-warning" aria-live="polite"> </div>
+            <div id="tree-footer">
+              <div class="tired-coffee-logo" aria-label="2Tired4Coffee">
+                <span class="logo-zzz" aria-hidden="true">ZZZ</span>
+                <span class="logo-mug" aria-hidden="true"></span>
+              </div>
+              <button id="tree-fullscreen-button" type="button" aria-label="Enter fullscreen">Fullscreen</button>
+              <div id="unity-build-title">Tree Bound</div>
+            </div>
+          </div>
+        </section>
+
         <section class="about-panel glass-panel" id="about">
           <p class="eyebrow">about</p>
           <h2>I’m 2Tired4Coffee, a game developer.</h2>
@@ -228,13 +270,16 @@
       var warningBanner = document.querySelector("#unity-warning");
       var whooLoaded = false;
       var simonLoaded = false;
+      var treeLoaded = false;
       var pistolLoaded = false;
       var whooInstance = null;
       var simonInstance = null;
+      var treeInstance = null;
       var pistolInstance = null;
       var pistolScript = null;
       var whooScript = null;
       var simonScript = null;
+      var treeScript = null;
       var accentColor = document.querySelector("#accent-color");
       var themeMode = document.querySelector("#theme-mode");
 

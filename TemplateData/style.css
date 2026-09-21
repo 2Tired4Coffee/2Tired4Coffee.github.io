@@ -700,7 +700,8 @@ body.game-view-active .showcase {
 
 body.game-view-active[data-game="pistol"] #pistol-python,
 body.game-view-active[data-game="whoo"] #whoo-gave-you-that,
-body.game-view-active[data-game="simon"] #simon-says {
+body.game-view-active[data-game="simon"] #simon-says,
+body.game-view-active[data-game="tree"] #tree-bound {
   display: block;
 }
 
@@ -756,7 +757,8 @@ body.game-view-active .about-panel {
 
 body.game-view-active[data-game="pistol"] #pistol-python,
 body.game-view-active[data-game="whoo"] #whoo-gave-you-that,
-body.game-view-active[data-game="simon"] #simon-says {
+body.game-view-active[data-game="simon"] #simon-says,
+body.game-view-active[data-game="tree"] #tree-bound {
   display: block !important;
 }
 
