@@ -825,7 +825,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-unity-container,
-#simon-unity-container {
+#simon-unity-container,
+#tree-unity-container {
   position: relative;
   overflow: hidden;
   min-height: 420px;
@@ -836,7 +837,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-unity-canvas,
-#simon-unity-canvas {
+#simon-unity-canvas,
+#tree-unity-canvas {
   display: block;
   width: 100% !important;
   height: auto !important;
@@ -845,7 +847,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-loading-bar,
-#simon-loading-bar {
+#simon-loading-bar,
+#tree-loading-bar {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -855,7 +858,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-progress-bar-empty,
-#simon-progress-bar-empty {
+#simon-progress-bar-empty,
+#tree-progress-bar-empty {
   width: 100%;
   height: 10px;
   overflow: hidden;
@@ -866,7 +870,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-progress-bar-full,
-#simon-progress-bar-full {
+#simon-progress-bar-full,
+#tree-progress-bar-full {
   width: 0%;
   height: 100%;
   border-radius: 999px;
@@ -875,7 +880,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-warning,
-#simon-warning {
+#simon-warning,
+#tree-warning {
   position: absolute;
   left: 50%;
   top: 5%;
@@ -891,7 +897,8 @@ body.game-view-active .showcase {
 }
 
 #whoo-footer,
-#simon-footer {
+#simon-footer,
+#tree-footer {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -904,6 +911,7 @@ body.game-view-active .showcase {
   background: linear-gradient(transparent, rgba(0,0,0,0.92));
 }
 
+#tree-fullscreen-button,
 #whoo-fullscreen-button {
   min-height: 32px;
   padding: 0 14px;

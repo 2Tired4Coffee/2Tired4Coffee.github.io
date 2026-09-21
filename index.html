@@ -511,6 +511,55 @@
         document.body.appendChild(simonScript);
       }
 
+      function loadTreeGame() {
+        if (treeLoaded) {
+          return;
+        }
+
+        var treeCanvas = document.querySelector("#tree-unity-canvas");
+        var treeLoadingBar = document.querySelector("#tree-loading-bar");
+        var treeProgressBarFull = document.querySelector("#tree-progress-bar-full");
+        var treeFullscreenButton = document.querySelector("#tree-fullscreen-button");
+        var treeWarning = document.querySelector("#tree-warning");
+        treeLoadingBar.style.display = "block";
+        treeScript = document.createElement("script");
+        treeScript.src = "Games/tree-bound/Build/WebGLOutput.loader.js";
+        treeScript.onload = function() {
+          createUnityInstance(treeCanvas, {
+            dataUrl: "Games/tree-bound/Build/WebGLOutput.data.br",
+            frameworkUrl: "Games/tree-bound/Build/WebGLOutput.framework.js.br",
+            codeUrl: "Games/tree-bound/Build/WebGLOutput.wasm.br",
+            streamingAssetsUrl: "Games/tree-bound/StreamingAssets",
+            companyName: "R1L3YJ1",
+            productName: "Tree Bound",
+            productVersion: "1.0",
+            showBanner: function(message) {
+              treeWarning.textContent = message;
+              treeWarning.style.display = "block";
+            }
+          }, function(progress) {
+            treeProgressBarFull.style.width = 100 * progress + "%";
+          }).then(function(unityInstance) {
+            treeInstance = unityInstance;
+            treeLoaded = true;
+            treeLoadingBar.style.display = "none";
+            treeFullscreenButton.onclick = function() {
+              unityInstance.SetFullscreen(1);
+            };
+          }).catch(function(message) {
+            treeLoadingBar.style.display = "none";
+            treeWarning.textContent = String(message);
+            treeWarning.style.display = "block";
+          });
+        };
+        treeScript.onerror = function() {
+          treeLoadingBar.style.display = "none";
+          treeWarning.textContent = "The game could not be loaded.";
+          treeWarning.style.display = "block";
+        };
+        document.body.appendChild(treeScript);
+      }
+
       function stopActiveGame() {
         var quitTasks = [];
 
@@ -526,6 +575,10 @@
           quitTasks.push(Promise.resolve(simonInstance.Quit()).catch(function() {}));
           simonInstance = null;
         }
+        if (treeInstance && typeof treeInstance.Quit === "function") {
+          quitTasks.push(Promise.resolve(treeInstance.Quit()).catch(function() {}));
+          treeInstance = null;
+        }
 
         if (pistolScript) {
           pistolScript.remove();
@@ -539,21 +592,30 @@
           simonScript.remove();
           simonScript = null;
         }
+        if (treeScript) {
+          treeScript.remove();
+          treeScript = null;
+        }
 
         pistolLoaded = false;
         whooLoaded = false;
         simonLoaded = false;
+        treeLoaded = false;
         canvas.width = canvas.width;
         document.querySelector("#whoo-unity-canvas").width = 960;
         document.querySelector("#whoo-unity-canvas").height = 600;
         document.querySelector("#simon-unity-canvas").width = 960;
         document.querySelector("#simon-unity-canvas").height = 600;
+        document.querySelector("#tree-unity-canvas").width = 960;
+        document.querySelector("#tree-unity-canvas").height = 540;
         loadingBar.style.display = "none";
         document.querySelector("#whoo-loading-bar").style.display = "none";
         document.querySelector("#simon-loading-bar").style.display = "none";
+        document.querySelector("#tree-loading-bar").style.display = "none";
         warningBanner.replaceChildren();
         document.querySelector("#whoo-warning").replaceChildren();
         document.querySelector("#simon-warning").replaceChildren();
+        document.querySelector("#tree-warning").replaceChildren();
         return Promise.all(quitTasks);
       }
 
@@ -591,10 +653,12 @@
           loadWhooGame();
         } else if (game === "simon") {
           loadSimonGame();
+        } else if (game === "tree") {
+          loadTreeGame();
         } else {
           loadPistolGame();
         }
-        var gameHash = game === "whoo" ? "#whoo-gave-you-that" : game === "simon" ? "#simon-says" : "#pistol-python";
+        var gameHash = game === "whoo" ? "#whoo-gave-you-that" : game === "simon" ? "#simon-says" : game === "tree" ? "#tree-bound" : "#pistol-python";
         if (updateHistory !== false && window.location.hash !== gameHash) {
           history.pushState({ game: game }, "", gameHash);
         }
@@ -635,6 +699,8 @@
           showGameView("whoo", false);
         } else if (window.location.hash === "#simon-says") {
           showGameView("simon", false);
+        } else if (window.location.hash === "#tree-bound") {
+          showGameView("tree", false);
         } else if (window.location.hash === "#games") {
           showGamesView(false);
         } else if (window.location.hash === "#about") {
@@ -650,6 +716,8 @@
         showGameView("whoo", false);
       } else if (window.location.hash === "#simon-says") {
         showGameView("simon", false);
+      } else if (window.location.hash === "#tree-bound") {
+        showGameView("tree", false);
       } else if (window.location.hash === "#games") {
         showGamesView(false);
       } else if (window.location.hash === "#about") {
