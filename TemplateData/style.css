@@ -837,8 +837,7 @@ body.game-view-active .showcase {
 }
 
 #whoo-unity-canvas,
-#simon-unity-canvas,
-#tree-unity-canvas {
+#simon-unity-canvas {
   display: block;
   width: 100% !important;
   height: auto !important;
@@ -847,7 +846,12 @@ body.game-view-active .showcase {
 }
 
 #tree-unity-canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
   aspect-ratio: 16 / 9;
+  margin-inline: auto;
+  background: #000;
 }
 
 #whoo-loading-bar,
