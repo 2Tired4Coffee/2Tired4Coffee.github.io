@@ -846,6 +846,10 @@ body.game-view-active .showcase {
   background: #000;
 }
 
+#tree-unity-canvas {
+  aspect-ratio: 16 / 9;
+}
+
 #whoo-loading-bar,
 #simon-loading-bar,
 #tree-loading-bar {
